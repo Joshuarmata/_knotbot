@@ -2,99 +2,64 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Alex Johnson
-  given: Alex
-  family: Johnson
+  display: KnotBot Project
+  given: KnotBot
+  family: Project
 postnominals: []
 status:
-  icon: "💻"  # Emoji shown on avatar badge: 💻 developer, 🎨 designer, 🚀 startup, 🔬 researcher, 🎓 student
-role: Full-Stack Developer
-email: alex@example.com
+  icon: "🤖"
+role: "EE 106A — Introduction to Robotics, UC Berkeley, Spring 2026"
 bio: |
-  Full-stack developer with 5+ years of experience building scalable web applications.
-  Passionate about modern JavaScript, cloud architecture, and creating delightful user experiences.
+  KnotBot is an autonomous robotic system that ties knots using a UR7e 6-DOF robot arm.
+  The system uses real-time computer vision, ROS2, and visual servoing to guide a robot
+  through a six-step knot-tying sequence on colored rope.
 
 affiliations:
-  - name: Tech Corp
-    url: https://techcorp.example.com
+  - name: UC Berkeley EECS
+    url: https://eecs.berkeley.edu
 
 links:
-  - icon: at-symbol
-    url: mailto:alex@example.com
-    label: E-mail Me
   - icon: brands/github
-    url: https://github.com/alexjohnson
-  - icon: brands/linkedin
-    url: https://www.linkedin.com/in/alexjohnson/
-  - icon: brands/x
-    url: https://x.com/alexjohnson
+    url: https://github.com
+    label: GitHub
 
 interests:
-  - Web Development
-  - Cloud Architecture
-  - Open Source
-  - Developer Experience
+  - Robot Manipulation
+  - Computer Vision
+  - Visual Servoing
+  - ROS2 & MoveIt
 
 education:
-  - degree: B.S. Computer Science
-    institution: State University
-    start: 2015-09-01
-    end: 2019-05-31
+  - degree: EE 106A — Introduction to Robotics
+    institution: UC Berkeley
+    start: 2026-01-01
+    end: 2026-05-31
     summary: |
-      Focus on software engineering and distributed systems.
-      Senior project on distributed caching systems.
-    button:
-      text: View Project
-      url: https://github.com/alexjohnson/senior-project
-      icon: brands/github
-
-experience:
-  - role: Senior Software Engineer
-    org: Tech Corp
-    start: 2023-01-01
-    summary: |
-      Lead development of microservices architecture serving 1M+ users.
-      Improved API response time by 40% through optimization.
-      Mentored team of 5 junior developers.
-  - role: Full-Stack Developer
-    org: Startup Inc
-    start: 2021-06-01
-    end: 2022-12-31
-    summary: |
-      Built and deployed 3 production applications from scratch.
-      Implemented CI/CD pipeline reducing deployment time by 60%.
-      Led migration from monolith to microservices architecture.
-  - role: Junior Developer
-    org: Web Agency
-    start: 2020-01-01
-    end: 2021-05-31
-    summary: |
-      Developed client websites using React and modern web technologies.
-      Participated in code reviews and agile ceremonies.
+      Final project: KnotBot — an autonomous rope knot-tying robot.
+      Team: Joshua Mata, Allison Dana, Daniel Municio.
 
 skills:
-  - name: Development
+  - name: Robotics
     items:
-      - label: TypeScript
+      - label: ROS2
         level: 5
-      - label: React
+      - label: MoveIt
+        level: 4
+      - label: UR7e Control
+        level: 4
+  - name: Computer Vision
+    items:
+      - label: OpenCV
         level: 5
-      - label: Node.js
-        level: 5
+      - label: RealSense SDK
+        level: 4
+      - label: Depth Estimation
+        level: 4
+  - name: Programming
+    items:
       - label: Python
-        level: 4
-  - name: DevOps
-    items:
-      - label: Docker
-        level: 4
-      - label: AWS
-        level: 4
-      - label: CI/CD
         level: 5
-
-languages:
-  - name: English
-    level: 5
-    label: Native
+      - label: C++
+        level: 3
 
 awards: []
