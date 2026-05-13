@@ -1,22 +1,21 @@
 ---
-title: 'Projects'
-date: 2024-05-19
+title: 'KnotBot'
+date: 2026-05-13
 type: landing
 
-# Page sections
 sections:
   - block: collection
     content:
-      title: Selected Projects
-      text: I enjoy making things. Here are a selection of projects that I have worked on over the years.
+      title: KnotBot Project
+      text: Autonomous rope knot-tying robot — EE 106A, UC Berkeley, Spring 2026.
       filters:
         folders:
           - projects
     design:
       view: article-grid
       fill_image: false
-      columns: 3
+      columns: 1
       show_date: false
       show_read_time: false
-      show_read_more: false
+      show_read_more: true
 ---

@@ -1,0 +1,197 @@
+/* ============================================================
+   KnotBot — Media & Layout Styles
+   ============================================================ */
+
+/* Media placeholder grid */
+.knotbot-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.knotbot-gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Individual placeholder box */
+.knotbot-placeholder {
+  border: 2px dashed rgba(128, 128, 128, 0.4);
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-color 0.2s, background 0.2s;
+  min-height: 180px;
+  justify-content: center;
+}
+
+.knotbot-placeholder:hover {
+  border-color: rgba(128, 128, 128, 0.7);
+  background: rgba(128, 128, 128, 0.04);
+}
+
+/* Video placeholder — slightly blue tint */
+.knotbot-video-placeholder {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.knotbot-video-placeholder:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.06);
+}
+
+/* Image placeholder — slightly green tint */
+.knotbot-image-placeholder {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.03);
+}
+
+.knotbot-image-placeholder:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.knotbot-placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.45;
+  line-height: 1;
+}
+
+.knotbot-placeholder-label {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.knotbot-placeholder-sub {
+  font-size: 0.8rem;
+  opacity: 0.45;
+  max-width: 240px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Pipeline visualization
+   ============================================================ */
+.knotbot-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.knotbot-pipeline-step {
+  flex: 1;
+  min-width: 160px;
+  background: rgba(128, 128, 128, 0.06);
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.knotbot-pipeline-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.knotbot-pipeline-content strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.knotbot-pipeline-content p {
+  font-size: 0.78rem;
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.knotbot-pipeline-arrow {
+  font-size: 1.5rem;
+  opacity: 0.3;
+  flex-shrink: 0;
+  padding: 0 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .knotbot-pipeline {
+    flex-direction: column;
+  }
+
+  .knotbot-pipeline-arrow {
+    transform: rotate(90deg);
+  }
+
+  .knotbot-pipeline-step {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   Team grid
+   ============================================================ */
+.knotbot-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.knotbot-team-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid rgba(128, 128, 128, 0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.knotbot-avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(168, 85, 247, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.knotbot-team-info h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.knotbot-team-role {
+  font-size: 0.8rem;
+  opacity: 0.55;
+  margin: 0 0 0.5rem;
+  font-style: italic;
+}
+
+.knotbot-team-info p:last-child {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0;
+  line-height: 1.5;
+}

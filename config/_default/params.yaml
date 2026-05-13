@@ -13,18 +13,18 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   identity:
     # Site name - shown in navbar, footer, copyright, and browser title by default
-    name: "Your Name"
+    name: "KnotBot"
     # Legal entity for copyright notices (defaults to name if not set)
-    organization: ""
+    organization: "UC Berkeley EE 106A"
     # Schema.org type for structured data
-    type: person                        # person | organization | local_business
+    type: organization                  # person | organization | local_business
     # Short tagline displayed on your site
-    tagline: "Full-Stack Developer"
+    tagline: "Autonomous Rope Knot Tying Robot"
     # Site meta description for search engines and social sharing
-    description: "Modern developer portfolio showcasing web development projects, technical blog posts, and open source contributions. Built with Hugo Blox."
+    description: "KnotBot is an autonomous robotic system that ties knots using a UR7e 6-DOF robot arm, Intel RealSense depth camera, and ROS2. Developed for EE 106A at UC Berkeley, Spring 2026."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
-      twitter: "yourusername"              # Twitter/X handle for Twitter Cards (without @)
+      twitter: ""
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -60,7 +60,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   typography:
     # Theme pack: name from data/fonts/
-    pack: "developer"
+    pack: "default"
 
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT

@@ -2,36 +2,36 @@
 # Leave the homepage title empty to use the site title
 title: ''
 summary: ''
-date: 2026-01-05
+date: 2026-05-13
 type: landing
 
 sections:
-  # Developer Hero - Gradient background with name, role, social, and CTAs
+  # Hero
   - block: dev-hero
     id: hero
     content:
       username: me
-      greeting: "Hi, I'm"
+      greeting: ""
       show_status: true
       show_scroll_indicator: true
       typewriter:
         enable: true
-        prefix: "I build"
+        prefix: "Tying knots with"
         strings:
-          - "full-stack web apps"
-          - "scalable APIs"
-          - "beautiful UIs"
-          - "open source tools"
+          - "computer vision"
+          - "a UR7e robot arm"
+          - "ROS2 & MoveIt"
+          - "visual servoing"
         type_speed: 70
         delete_speed: 40
         pause_time: 2500
       cta_buttons:
-        - text: View My Work
-          url: "#projects"
+        - text: Watch Demo
+          url: "#demo"
+          icon: play
+        - text: How It Works
+          url: "#steps"
           icon: arrow-down
-        - text: Get In Touch
-          url: "#contact"
-          icon: envelope
     design:
       style: centered
       avatar_shape: circle
@@ -42,184 +42,369 @@ sections:
           dark: "#0a0a0f"
       spacing:
         padding: ["6rem", "0", "4rem", "0"]
-  
-  # Filterable Portfolio - Alpine.js powered project filtering
-  - block: portfolio
-    id: projects
+
+  # About
+  - block: markdown
+    id: about
     content:
-      title: "Featured Projects"
-      subtitle: "A selection of my recent work"
-      count: 0
-      filters:
-        folders:
-          - projects
-      buttons:
-        - name: All
-          tag: '*'
-        - name: Full-Stack
-          tag: Full-Stack
-        - name: Frontend
-          tag: Frontend
-        - name: Backend
-          tag: Backend
-      default_button_index: 0
-      # Archive link auto-shown if more projects exist than 'count' above
-      # archive:
-      #   enable: false  # Set to false to explicitly hide
-      #   text: "Browse All"  # Customize text
-      #   link: "/work/"  # Custom URL
+      title: "About KnotBot"
+      subtitle: "Autonomous rope manipulation using robotic perception and control"
+      text: |-
+        KnotBot is a final project for **EE 106A — Introduction to Robotics** at UC Berkeley (Spring 2026).
+        The system autonomously ties an overhand knot in a rope using a **UR7e 6-DOF robot arm**,
+        guided entirely by real-time visual feedback from an **Intel RealSense D435** depth camera.
+
+        The robot perceives the spatial layout of colored rope segments, computes the geometric
+        transformations needed for each knot-tying step, and executes a six-step manipulation
+        sequence using **MoveIt** motion planning and **ROS2** visual servoing.
+
+        Key challenges addressed include depth estimation of color-absorbing rope (which defeats
+        standard IR depth sensors), robust 3D localization via ArUco marker calibration, and
+        closed-loop trajectory execution that adapts to real-world rope deformation.
     design:
-      columns: 3
+      columns: '1'
       background:
         color:
           light: "#ffffff"
           dark: "#0d0d12"
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
-  
-  # Visual Tech Stack - Icons organized by category
+
+  # Demo Video
+  - block: markdown
+    id: demo
+    content:
+      title: "Demo"
+      subtitle: "KnotBot in action"
+      text: |-
+        <div class="knotbot-media-grid">
+          <div class="knotbot-placeholder knotbot-video-placeholder">
+            <div class="knotbot-placeholder-icon">▶</div>
+            <div class="knotbot-placeholder-label">Full Knot-Tying Demo</div>
+            <div class="knotbot-placeholder-sub">End-to-end video of KnotBot completing an overhand knot — drop video file here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-video-placeholder">
+            <div class="knotbot-placeholder-icon">▶</div>
+            <div class="knotbot-placeholder-label">Computer Vision Feed</div>
+            <div class="knotbot-placeholder-sub">Side-by-side camera view with color detection overlays — drop video file here</div>
+          </div>
+        </div>
+    design:
+      columns: '1'
+      background:
+        color:
+          light: "#f5f5f5"
+          dark: "#08080c"
+      spacing:
+        padding: ["4rem", "0", "4rem", "0"]
+
+  # How It Works — 6-Step Sequence
+  - block: resume-experience
+    id: steps
+    content:
+      title: "How It Works"
+      subtitle: "A six-step geometric manipulation sequence"
+      date_format: ""
+      items:
+        - title: "Step 1 — Identify the Crossing Point"
+          company: "Visual Perception"
+          company_url: ''
+          company_logo: ''
+          location: "Color Detection + Depth Estimation"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The camera detects four colored tape landmarks (yellow, red, green, blue) on the
+            workspace using HSV filtering. Depth values from the aligned RealSense depth stream
+            are used to localize each color blob in 3D (base_link frame). An ArUco marker
+            calibrates the table-plane Z to compensate for IR absorption by colored tape.
+            The robot computes the target crossing point: the projection of the yellow rope
+            tip onto the perpendicular bisector of the green–blue line.
+
+        - title: "Step 2 — Grasp the Rope End"
+          company: "Grasp Planning"
+          company_url: ''
+          company_logo: ''
+          location: "SVD Best-Fit + Reflection Geometry"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The system finds the yellow rope point farthest from the green–blue reference line.
+            SVD best-fit over all yellow pixel positions determines the rope's tangent direction
+            so the gripper can align perpendicular to the rope for a reliable grasp.
+            The drop goal is computed as a pure geometric reflection of the grasp point across
+            the green–blue reference line, placing the rope on the opposite side.
+
+        - title: "Step 3 — Form the Loop"
+          company: "Loop Formation"
+          company_url: ''
+          company_logo: ''
+          location: "Perpendicular Bisector Reflection"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The blue rope centroid is reflected across the perpendicular bisector of the
+            green–red segment. This creates the open loop structure needed for the rope
+            end to pass through and complete the overhand knot topology.
+
+        - title: "Step 4 — Thread the Rope End"
+          company: "Threading"
+          company_url: ''
+          company_logo: ''
+          location: "Line Intersection Targeting"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The target is the intersection of two lines: the bisector through the blue
+            centroid (perpendicular to the blue best-fit direction) and the perpendicular
+            from the farthest yellow point to the green–red segment. This intersection
+            positions the gripper to thread the rope end through the formed loop.
+
+        - title: "Step 5 — Tighten the Knot"
+          company: "Tightening"
+          company_url: ''
+          company_logo: ''
+          location: "Midpoint Targeting"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The robot moves to the midpoint between the blue and yellow rope centroids.
+            This position draws both rope segments toward the center, beginning the
+            tightening phase of the overhand knot.
+
+        - title: "Step 6 — Final Tuck & Release"
+          company: "Completion"
+          company_url: ''
+          company_logo: ''
+          location: "Averaged Direction Projection"
+          date_start: ''
+          date_end: ''
+          description: |2-
+            The gripper moves to a point projected along the averaged direction of the
+            red→blue and green→blue vectors, at a distance equal to the total span
+            of the rope geometry. The rope is released, completing the overhand knot.
+            Force/torque feedback from the robot's wrist sensor confirms rope tension.
+    design:
+      columns: '1'
+      background:
+        color:
+          light: "#ffffff"
+          dark: "#0d0d12"
+      spacing:
+        padding: ["4rem", "0", "4rem", "0"]
+
+  # Visual Pipeline
+  - block: markdown
+    id: vision
+    content:
+      title: "Visual Pipeline"
+      subtitle: "From raw pixels to 3D robot poses"
+      text: |-
+        <div class="knotbot-pipeline">
+          <div class="knotbot-pipeline-step">
+            <div class="knotbot-pipeline-num">01</div>
+            <div class="knotbot-pipeline-content">
+              <strong>Color Segmentation</strong>
+              <p>HSV masking isolates yellow, red, green, and blue rope/tape blobs. Morphological operations (open/close) remove noise.</p>
+            </div>
+          </div>
+          <div class="knotbot-pipeline-arrow">→</div>
+          <div class="knotbot-pipeline-step">
+            <div class="knotbot-pipeline-num">02</div>
+            <div class="knotbot-pipeline-content">
+              <strong>Depth Estimation</strong>
+              <p>Aligned RealSense depth stream provides Z values per blob. ArUco marker (ID 1, 150mm) calibrates the table-plane Z for IR-absorbing tape.</p>
+            </div>
+          </div>
+          <div class="knotbot-pipeline-arrow">→</div>
+          <div class="knotbot-pipeline-step">
+            <div class="knotbot-pipeline-num">03</div>
+            <div class="knotbot-pipeline-content">
+              <strong>3D Localization</strong>
+              <p>Camera intrinsics back-project 2D centroids to 3D camera frame. TF2 transforms to base_link give robot-relative coordinates.</p>
+            </div>
+          </div>
+          <div class="knotbot-pipeline-arrow">→</div>
+          <div class="knotbot-pipeline-step">
+            <div class="knotbot-pipeline-num">04</div>
+            <div class="knotbot-pipeline-content">
+              <strong>Best-Fit Lines</strong>
+              <p>SVD over color blob point clouds produces best-fit line axes and orientations. Broadcast as TF frames for MoveIt targeting.</p>
+            </div>
+          </div>
+          <div class="knotbot-pipeline-arrow">→</div>
+          <div class="knotbot-pipeline-step">
+            <div class="knotbot-pipeline-num">05</div>
+            <div class="knotbot-pipeline-content">
+              <strong>Goal Computation</strong>
+              <p>Geometric algorithms compute step-specific waypoints (reflections, intersections, midpoints) and publish them as RViz markers + TF frames.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="knotbot-media-grid" style="margin-top:2rem;">
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">RViz Visualization</div>
+            <div class="knotbot-placeholder-sub">Screenshot of color detection overlays and step goal markers in RViz — drop image here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Camera View with Detections</div>
+            <div class="knotbot-placeholder-sub">Raw camera feed with bounding boxes for each detected color — drop image here</div>
+          </div>
+        </div>
+    design:
+      columns: '1'
+      background:
+        color:
+          light: "#f5f5f5"
+          dark: "#08080c"
+      spacing:
+        padding: ["4rem", "0", "4rem", "0"]
+
+  # Tech Stack
   - block: tech-stack
-    id: skills
+    id: tech
     content:
       title: "Tech Stack"
-      subtitle: "Technologies I use to build things"
+      subtitle: "Technologies powering KnotBot"
       categories:
-        - name: Languages
+        - name: Robotics
           items:
-            - name: TypeScript
-              icon: devicon/typescript
-            - name: JavaScript
-              icon: devicon/javascript
+            - name: ROS2
+              icon: devicon/ros
+            - name: MoveIt
+              icon: devicon/ros
+            - name: UR7e Robot Arm
+              icon: devicon/linux
+            - name: RealSense D435
+              icon: devicon/linux
+        - name: Computer Vision
+          items:
+            - name: OpenCV
+              icon: devicon/opencv
+            - name: NumPy
+              icon: devicon/numpy
+            - name: cv_bridge
+              icon: devicon/python
+            - name: ArUco Markers
+              icon: devicon/python
+        - name: Programming
+          items:
             - name: Python
               icon: devicon/python
-            - name: Go
-              icon: devicon/go
-        - name: Frontend
-          items:
-            - name: React
-              icon: devicon/react
-            - name: Next.js
-              icon: devicon/nextjs
-            - name: Tailwind CSS
-              icon: devicon/tailwindcss
-            - name: Alpine.js
-              icon: devicon/alpinejs
-        - name: Backend
-          items:
-            - name: Node.js
-              icon: devicon/nodejs
-            - name: Express
-              icon: devicon/express
-            - name: PostgreSQL
-              icon: devicon/postgresql
-            - name: Redis
-              icon: devicon/redis
-        - name: DevOps
+            - name: C++
+              icon: devicon/cplusplus
+            - name: YAML / Launch
+              icon: devicon/yaml
+        - name: Tools
           items:
             - name: Docker
               icon: devicon/docker
-            - name: AWS
-              icon: devicon/amazonwebservices
-            - name: GitHub Actions
+            - name: GitHub
               icon: brands/github
-            - name: Vercel
-              icon: devicon/vercel
+            - name: RViz
+              icon: devicon/linux
+            - name: Ubuntu 22.04
+              icon: devicon/ubuntu
     design:
       style: grid
       show_levels: false
       background:
         color:
-          light: "#f5f5f5"
-          dark: "#08080c"
-      spacing:
-        padding: ["4rem", "0", "4rem", "0"]
-  
-  # Experience Timeline
-  - block: resume-experience
-    id: experience
-    content:
-      title: Experience
-      date_format: Jan 2006
-      items:
-        - title: Senior Software Engineer
-          company: Tech Corp
-          company_url: ''
-          company_logo: ''
-          location: San Francisco, CA
-          date_start: '2023-01-01'
-          date_end: ''
-          description: |2-
-            * Lead development of microservices architecture serving 1M+ users
-            * Improved API response time by 40% through optimization
-            * Mentored team of 5 junior developers
-            * Tech stack: React, Node.js, PostgreSQL, AWS
-        - title: Full-Stack Developer
-          company: Startup Inc
-          company_url: ''
-          company_logo: ''
-          location: Remote
-          date_start: '2021-06-01'
-          date_end: '2022-12-31'
-          description: |2-
-            * Built and deployed 3 production applications from scratch
-            * Implemented CI/CD pipeline reducing deployment time by 60%
-            * Collaborated with design team on UI/UX improvements
-            * Tech stack: Next.js, Express, MongoDB, Docker
-        - title: Junior Developer
-          company: Web Agency
-          company_url: ''
-          company_logo: ''
-          location: New York, NY
-          date_start: '2020-01-01'
-          date_end: '2021-05-31'
-          description: |2-
-            * Developed client websites using modern web technologies
-            * Maintained and updated legacy codebases
-            * Participated in code reviews and agile ceremonies
-            * Tech stack: React, WordPress, PHP, MySQL
-    design:
-      columns: '1'
-      background:
-        color:
           light: "#ffffff"
           dark: "#0d0d12"
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
-  
-  # Recent Blog Posts
-  - block: collection
-    id: blog
+
+  # Media Gallery
+  - block: markdown
+    id: gallery
     content:
-      title: Recent Posts
-      subtitle: 'Thoughts on web development, tech, and more'
-      text: ''
-      filters:
-        folders:
-          - blog
-        exclude_featured: false
-      count: 3
-      order: desc
-    design:
-      view: card
-      columns: 3
-      background:
-        color:
-          light: "#f5f5f5"
-          dark: "#08080c"
-      spacing:
-        padding: ["4rem", "0", "4rem", "0"]
-  
-  # Contact Section
-  - block: contact-info
-    id: contact
-    content:
-      title: Get In Touch
-      subtitle: "Let's build something amazing together"
+      title: "Media Gallery"
+      subtitle: "Photos and videos of KnotBot"
       text: |-
-        I'm always interested in hearing about new projects and opportunities.
-        Whether you're looking to hire, collaborate, or just want to say hi, feel free to reach out!
-      email: alex@example.com
-      autolink: true
+        <div class="knotbot-media-grid knotbot-gallery-grid">
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Robot Setup</div>
+            <div class="knotbot-placeholder-sub">UR7e arm with RealSense camera mounted at wrist — drop image here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Workspace Layout</div>
+            <div class="knotbot-placeholder-sub">Table with colored tape markers and rope — drop image here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Grasp in Progress</div>
+            <div class="knotbot-placeholder-sub">Robot gripper grasping rope end (Step 2) — drop image here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Knot Completion</div>
+            <div class="knotbot-placeholder-sub">Finished overhand knot after Step 6 — drop image here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-video-placeholder">
+            <div class="knotbot-placeholder-icon">▶</div>
+            <div class="knotbot-placeholder-label">Step-by-Step Breakdown</div>
+            <div class="knotbot-placeholder-sub">Slow-motion video of each of the 6 manipulation steps — drop video here</div>
+          </div>
+          <div class="knotbot-placeholder knotbot-image-placeholder">
+            <div class="knotbot-placeholder-icon">🖼</div>
+            <div class="knotbot-placeholder-label">Team Photo</div>
+            <div class="knotbot-placeholder-sub">Joshua Mata, Allison Dana, and Daniel Municio — drop image here</div>
+          </div>
+        </div>
+    design:
+      columns: '1'
+      background:
+        color:
+          light: "#f5f5f5"
+          dark: "#08080c"
+      spacing:
+        padding: ["4rem", "0", "4rem", "0"]
+
+  # Team
+  - block: markdown
+    id: team
+    content:
+      title: "The Team"
+      subtitle: "EE 106A Project — Spring 2026, UC Berkeley"
+      text: |-
+        <div class="knotbot-team-grid">
+          <div class="knotbot-team-card">
+            <div class="knotbot-team-avatar">
+              <div class="knotbot-avatar-placeholder">JM</div>
+            </div>
+            <div class="knotbot-team-info">
+              <h3>Joshua Mata</h3>
+              <p class="knotbot-team-role">Computer Vision & Perception</p>
+              <p>Developed the color segmentation pipeline, depth estimation, ArUco calibration, and TF broadcasting for all rope/tape detections.</p>
+            </div>
+          </div>
+          <div class="knotbot-team-card">
+            <div class="knotbot-team-avatar">
+              <div class="knotbot-avatar-placeholder">AD</div>
+            </div>
+            <div class="knotbot-team-info">
+              <h3>Allison Dana</h3>
+              <p class="knotbot-team-role">Computer Vision & Perception</p>
+              <p>Co-developed the color detection node, best-fit line fitting, and step goal computation geometry for the knot-tying sequence.</p>
+            </div>
+          </div>
+          <div class="knotbot-team-card">
+            <div class="knotbot-team-avatar">
+              <div class="knotbot-avatar-placeholder">DM</div>
+            </div>
+            <div class="knotbot-team-info">
+              <h3>Daniel Municio</h3>
+              <p class="knotbot-team-role">Motion Planning & Control</p>
+              <p>Built the visual servoing node, MoveIt IK integration, trajectory controllers, gripper control, and the end-to-end 6-step execution pipeline.</p>
+            </div>
+          </div>
+        </div>
     design:
       columns: '1'
       background:
@@ -228,22 +413,19 @@ sections:
           dark: "#0d0d12"
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
-  
-  # CTA Card
+
+  # CTA / Links
   - block: cta-card
     content:
-      title: "Open to Opportunities"
+      title: "Explore the Code & Report"
       text: |-
-        I'm currently looking for **senior engineering** or **tech lead** roles.
-        
-        Let's connect and discuss how I can help your team.
+        View the full source code, technical report, and additional documentation for KnotBot.
       button:
-        text: 'Download Resume'
-        url: uploads/resume.pdf
+        text: 'View on GitHub'
+        url: 'https://github.com'
         new_tab: true
     design:
       card:
-        # Light mode: soft pastel theme gradient | Dark mode: rich deep gradient
         css_class: 'bg-gradient-to-br from-primary-200 via-primary-100 to-secondary-200 dark:from-primary-600 dark:via-primary-700 dark:to-secondary-700'
         text_color: dark
       background:
