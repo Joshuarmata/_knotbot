@@ -354,7 +354,7 @@ sections:
           <div class="knotbot-placeholder knotbot-image-placeholder">
             <div class="knotbot-placeholder-icon">🖼</div>
             <div class="knotbot-placeholder-label">Team Photo</div>
-            <div class="knotbot-placeholder-sub">Joshua Mata, Allison Dana, and Daniel Municio — drop image here</div>
+            <div class="knotbot-placeholder-sub">Joshua Mata and Allison Dana — drop image here</div>
           </div>
         </div>
     design:
@@ -380,8 +380,7 @@ sections:
             </div>
             <div class="knotbot-team-info">
               <h3>Joshua Mata</h3>
-              <p class="knotbot-team-role">Computer Vision & Perception</p>
-              <p>Developed the color segmentation pipeline, depth estimation, ArUco calibration, and TF broadcasting for all rope/tape detections.</p>
+              <p>Applied Mathematics, Minor Mechanical Engineering</p>
             </div>
           </div>
           <div class="knotbot-team-card">
@@ -390,18 +389,7 @@ sections:
             </div>
             <div class="knotbot-team-info">
               <h3>Allison Dana</h3>
-              <p class="knotbot-team-role">Computer Vision & Perception</p>
-              <p>Co-developed the color detection node, best-fit line fitting, and step goal computation geometry for the knot-tying sequence.</p>
-            </div>
-          </div>
-          <div class="knotbot-team-card">
-            <div class="knotbot-team-avatar">
-              <div class="knotbot-avatar-placeholder">DM</div>
-            </div>
-            <div class="knotbot-team-info">
-              <h3>Daniel Municio</h3>
-              <p class="knotbot-team-role">Motion Planning & Control</p>
-              <p>Built the visual servoing node, MoveIt IK integration, trajectory controllers, gripper control, and the end-to-end 6-step execution pipeline.</p>
+              <p>Electrical Engineering and Computer Science</p>
             </div>
           </div>
         </div>

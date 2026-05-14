@@ -23,7 +23,7 @@ featured: true
 status: "Completed"
 role: "EE 106A Final Project"
 duration: "Spring 2026"
-team_size: 3
+team_size: 2
 highlights:
   - "6-step autonomous knot-tying sequence"
   - "Real-time HSV color segmentation + depth estimation"
@@ -173,11 +173,7 @@ Colored tape absorbs IR light and often returns zero depth from the RealSense al
 
 ## Team
 
-| Name | Contribution |
-|------|-------------|
-| **Joshua Mata** | Color detection, depth estimation, ArUco calibration, TF broadcasting |
-| **Allison Dana** | Color segmentation, best-fit lines, step goal geometry |
-| **Daniel Municio** | Visual servo node, MoveIt IK, trajectory control, gripper, 6-step execution |
+**Joshua Mata** and **Allison Dana** — joint development across perception, planning, and control.
 
 ---
 
