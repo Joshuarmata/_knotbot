@@ -1,3 +1,5 @@
+# Optional Netlify configuration. Primary deployment for this repo is GitHub Pages
+# (see hugoblox.yaml deploy.host and .github/workflows/deploy.yml).
 [build]
   command = """
     set -e

@@ -5,8 +5,8 @@
 
 # Website name (set in params.yaml under hugoblox.branding.name)
 title: ''
-# Website URL
-baseURL: 'https://example.com/'
+# Website URL (GitHub Pages project site; overridden locally by `hugo server`)
+baseURL: 'https://joshuarmata.github.io/_knotbot/'
 
 ############################
 ## LANGUAGE
