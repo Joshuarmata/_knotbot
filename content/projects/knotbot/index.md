@@ -101,7 +101,7 @@ Executes the knot-tying sequence:
   <div class="knotbot-placeholder knotbot-image-placeholder">
     <div class="knotbot-placeholder-icon">🖼</div>
     <div class="knotbot-placeholder-label">Step 4 — Thread the End</div>
-    <div class="knotbot-placeholder-label">Rope end threaded through the formed loop — drop image here</div>
+    <div class="knotbot-placeholder-sub">Rope end threaded through the formed loop — drop image here</div>
   </div>
   <div class="knotbot-placeholder knotbot-image-placeholder">
     <div class="knotbot-placeholder-icon">🖼</div>
@@ -173,7 +173,10 @@ Colored tape absorbs IR light and often returns zero depth from the RealSense al
 
 ## Team
 
-**Joshua Mata** and **Allison Dana** — joint development across perception, planning, and control.
+| Name | Contribution |
+|------|-------------|
+| **Joshua Mata** | Color detection, depth estimation, ArUco calibration, TF broadcasting |
+| **Allison Dana** | Color segmentation, best-fit lines, step goal geometry |
 
 ---
 

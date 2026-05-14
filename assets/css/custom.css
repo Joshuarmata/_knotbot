@@ -188,9 +188,16 @@ section#hero.blox-dev-hero
 }
 
 .knotbot-team-info h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.2rem;
   font-size: 1rem;
   font-weight: 700;
+}
+
+.knotbot-team-role {
+  font-size: 0.8rem;
+  opacity: 0.55;
+  margin: 0 0 0.5rem;
+  font-style: italic;
 }
 
 .knotbot-team-info p:last-child {
