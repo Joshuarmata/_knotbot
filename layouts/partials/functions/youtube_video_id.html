@@ -1,0 +1,35 @@
+{{- $u := strings.TrimSpace (printf "%v" (.url | default "")) -}}
+{{- $id := "" -}}
+{{- if $u -}}
+  {{- if strings.Contains $u "youtu.be/" -}}
+    {{- with split $u "youtu.be/" -}}
+      {{- if gt (len .) 1 -}}
+        {{- $part := index . 1 -}}
+        {{- $id = index (split $part "?") 0 -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if strings.Contains $u "/shorts/" -}}
+    {{- with split $u "/shorts/" -}}
+      {{- if gt (len .) 1 -}}
+        {{- $part := index . 1 -}}
+        {{- $id = index (split $part "?") 0 -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if strings.Contains $u "watch?v=" -}}
+    {{- with split $u "watch?v=" -}}
+      {{- if gt (len .) 1 -}}
+        {{- $part := index . 1 -}}
+        {{- $id = index (split $part "&") 0 -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if strings.Contains $u "v=" -}}
+    {{- with split $u "v=" -}}
+      {{- if gt (len .) 1 -}}
+        {{- $part := index . 1 -}}
+        {{- $id = index (split $part "&") 0 -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if ne (len $id) 11 -}}{{- $id = "" -}}{{- end -}}
+{{- $id -}}

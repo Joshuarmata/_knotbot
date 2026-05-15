@@ -93,8 +93,12 @@
         {{ with index $button_raw "icon" }}{{ $button_icon = strings.TrimSpace (printf "%v" .) }}{{ end }}
       {{ end }}
 
+      {{ $video_url := "" }}
+      {{ with index . "video" }}{{ $video_url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ $skip_dates := partial "functions/coerce_bool" (dict "value" (index . "skip_dates") "default" false) }}
+
       {{ if or $role $org }}
-        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" $icon "tags" $tags "button" (dict "url" $button_url "text" $button_text "icon" $button_icon)) }}
+        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" $icon "tags" $tags "button" (dict "url" $button_url "text" $button_text "icon" $button_icon) "video" $video_url "skip_dates" $skip_dates) }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -130,8 +134,10 @@
       {{ with index . "date_end" }}{{ $end = strings.TrimSpace (printf "%v" .) }}{{ end }}
       {{ if not $end }}{{ with index . "end" }}{{ $end = strings.TrimSpace (printf "%v" .) }}{{ end }}{{ end }}
       {{ $tags := slice }}
+      {{ $video_url := "" }}
+      {{ with index . "video" }}{{ $video_url = strings.TrimSpace (printf "%v" .) }}{{ end }}
       {{ if or $role $org }}
-        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" "" "tags" $tags "button" (dict "url" "" "text" "" "icon" "") "skip_dates" true) }}
+        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" "" "tags" $tags "button" (dict "url" "" "text" "" "icon" "") "skip_dates" true "video" $video_url) }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -261,6 +267,22 @@
           <div class="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed">
             {{ . | emojify | $page.RenderString }}
           </div>
+          {{ end }}
+
+          {{ $video_raw := "" }}
+          {{ with index $item "video" }}{{ $video_raw = strings.TrimSpace (printf "%v" .) }}{{ end }}
+          {{ if $video_raw }}
+            {{ $yid := partial "functions/youtube_video_id.html" (dict "url" $video_raw) }}
+            {{ if $yid }}
+            <div class="mt-5 aspect-video w-full max-w-2xl overflow-hidden rounded-lg border border-gray-200 dark:border-white/[0.08] shadow-sm">
+              <iframe class="h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/{{ $yid }}?rel=0"
+                title="{{ index $item "role" | plainify }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"></iframe>
+            </div>
+            {{ end }}
           {{ end }}
           
           {{ with index $item "tags" }}
