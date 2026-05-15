@@ -29,6 +29,14 @@ interests:
   - Visual Servoing
   - ROS2 & MoveIt
 
+education:
+  - degree: EE 106A — Introduction to Robotics
+    institution: UC Berkeley
+    start: 2026-01-01
+    end: 2026-05-31
+    summary: |
+      Final project: KnotBot — an autonomous rope knot-tying robot.
+      Team: Joshua Mata, Allison Dana.
 
 skills:
   - name: Robotics
