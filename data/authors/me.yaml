@@ -12,7 +12,7 @@ role: "EE 106A — Introduction to Robotics, UC Berkeley, Spring 2026"
 bio: |
   KnotBot is an autonomous robotic system that ties knots using a UR7e 6-DOF robot arm.
   The system uses real-time computer vision, ROS2, and visual servoing to guide a robot
-  through a six-step knot-tying sequence on colored rope.
+  through a seven-phase knot-tying sequence (steps 0–6) on colored rope.
 
 affiliations:
   - name: UC Berkeley EECS
@@ -32,17 +32,22 @@ interests:
 # Education copy is rendered in the Team section (`content/_index.md`); keep it out of `education:` here
 # so it does not appear under How It Works (resume-experience block).
 
-# Shown in the homepage "How It Works" timeline (steps 0–5). Optional `video` renders a YouTube embed.
+# How It Works: steps 0–6. Optional `image` (site-relative or absolute URL), `video` (YouTube).
 experience:
-  - role: "Step 0 — Introduction"
-    org: "Workspace overview — clip coming soon"
+  - role: "Step 0 — Set"
+    org: "Initial rope layout on the workspace"
     skip_dates: true
+    image: media/how-it-works/step-0-set.png
+    image_alt: "Diagram: colored rope segments before and after the initial set configuration"
     summary: |
-      Short overview of the workspace, colored tape landmarks, and how the six manipulation
-      phases fit together. A walkthrough video will be linked here when it is ready.
-  - role: "Step 1 — Identify the Crossing Point"
+      The rope starts in a staged layout with green, yellow, blue, and red tape landmarks.
+      This phase establishes the baseline geometry before crossing and grasp motions.
+      A walkthrough video will be added here when ready.
+  - role: "Step 1 — Cross"
     org: "Visual Perception — Color Detection + Depth Estimation"
     skip_dates: true
+    image: media/how-it-works/step-1-cross.png
+    image_alt: "Diagram: crossing the red rope end over the body of the rope"
     video: "https://youtu.be/QGwxxTDsUf4"
     summary: |
       The camera detects four colored tape landmarks (yellow, red, green, blue) on the
@@ -51,9 +56,11 @@ experience:
       calibrates the table-plane Z to compensate for IR absorption by colored tape.
       The robot computes the target crossing point: the projection of the yellow rope
       tip onto the perpendicular bisector of the green–blue line.
-  - role: "Step 2 — Grasp the Rope End"
+  - role: "Step 2 — Flip"
     org: "Grasp Planning — SVD Best-Fit + Reflection Geometry"
     skip_dates: true
+    image: media/how-it-works/step-2-flip.png
+    image_alt: "Diagram: flipping the rope loop configuration"
     video: "https://youtube.com/shorts/NT93a8iIzBE?feature=share"
     summary: |
       The system finds the yellow rope point farthest from the green–blue reference line.
@@ -69,23 +76,34 @@ experience:
       The blue rope centroid is reflected across the perpendicular bisector of the
       green–red segment. This creates the open loop structure needed for the rope
       end to pass through and complete the overhand knot topology.
-  - role: "Step 4 — Thread the Rope End"
+  - role: "Step 4 — Center"
     org: "Threading — Line Intersection Targeting"
     skip_dates: true
+    image: media/how-it-works/step-4-center.png
+    image_alt: "Diagram: moving the rope end into the center of the loop"
     video: "https://youtube.com/shorts/pujQQuupZSc?feature=share"
     summary: |
       The target is the intersection of two lines: the bisector through the blue
       centroid (perpendicular to the blue best-fit direction) and the perpendicular
       from the farthest yellow point to the green–red segment. This intersection
       positions the gripper to thread the rope end through the formed loop.
-  - role: "Step 5 — Tighten, Final Tuck & Release"
-    org: "Completion — Midpoint + Averaged Direction Projection"
+  - role: "Step 5 — Flip (part 2)"
+    org: "Late-stage loop reorientation"
     skip_dates: true
+    image: media/how-it-works/step-5-flip-part-2.png
+    image_alt: "Diagram: second flip of the loop before final pull"
+    summary: |
+      The gripper continues reorienting the loop so the rope topology matches the
+      tightened overhand knot. The robot moves toward the midpoint between the blue and
+      yellow rope centroids to draw both segments toward the center before the final pull.
+  - role: "Step 6 — Pull"
+    org: "Tighten, final tuck, and release"
+    skip_dates: true
+    image: media/how-it-works/step-6-pull.png
+    image_alt: "Diagram: pulling to tighten the knot and finishing the motion"
     video: "https://youtube.com/shorts/wegP1dggHmc"
     summary: |
-      The robot moves to the midpoint between the blue and yellow rope centroids to
-      draw both rope segments toward the center and begin tightening the overhand knot.
-      The gripper then moves to a point projected along the averaged direction of the
+      The gripper moves to a point projected along the averaged direction of the
       red→blue and green→blue vectors, at a distance equal to the total span of the rope
       geometry. The rope is released, completing the knot. Force/torque feedback from the
       robot's wrist sensor confirms rope tension.

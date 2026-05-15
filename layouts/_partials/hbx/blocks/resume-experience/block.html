@@ -95,10 +95,14 @@
 
       {{ $video_url := "" }}
       {{ with index . "video" }}{{ $video_url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ $image_src := "" }}
+      {{ with index . "image" }}{{ $image_src = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ $image_alt := "" }}
+      {{ with index . "image_alt" }}{{ $image_alt = strings.TrimSpace (printf "%v" .) }}{{ end }}
       {{ $skip_dates := partial "functions/coerce_bool" (dict "value" (index . "skip_dates") "default" false) }}
 
       {{ if or $role $org }}
-        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" $icon "tags" $tags "button" (dict "url" $button_url "text" $button_text "icon" $button_icon) "video" $video_url "skip_dates" $skip_dates) }}
+        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" $icon "tags" $tags "button" (dict "url" $button_url "text" $button_text "icon" $button_icon) "video" $video_url "image" $image_src "image_alt" $image_alt "skip_dates" $skip_dates) }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -136,8 +140,12 @@
       {{ $tags := slice }}
       {{ $video_url := "" }}
       {{ with index . "video" }}{{ $video_url = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ $image_src := "" }}
+      {{ with index . "image" }}{{ $image_src = strings.TrimSpace (printf "%v" .) }}{{ end }}
+      {{ $image_alt := "" }}
+      {{ with index . "image_alt" }}{{ $image_alt = strings.TrimSpace (printf "%v" .) }}{{ end }}
       {{ if or $role $org }}
-        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" "" "tags" $tags "button" (dict "url" "" "text" "" "icon" "") "skip_dates" true "video" $video_url) }}
+        {{ $experience = $experience | append (dict "role" $role "org" $org "start" $start "end" $end "summary" $summary "icon" "" "tags" $tags "button" (dict "url" "" "text" "" "icon" "") "skip_dates" true "video" $video_url "image" $image_src "image_alt" $image_alt) }}
       {{ end }}
     {{ end }}
   {{ end }}
@@ -267,6 +275,21 @@
           <div class="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 leading-relaxed">
             {{ . | emojify | $page.RenderString }}
           </div>
+          {{ end }}
+
+          {{ $img_src := "" }}
+          {{ with index $item "image" }}{{ $img_src = strings.TrimSpace (printf "%v" .) }}{{ end }}
+          {{ if $img_src }}
+            {{ $img_href := $img_src }}
+            {{ if not (or (hasPrefix $img_src "http://") (hasPrefix $img_src "https://")) }}
+              {{ $img_href = $img_src | relURL }}
+            {{ end }}
+            {{ $img_alt := "" }}
+            {{ with index $item "image_alt" }}{{ $img_alt = strings.TrimSpace (printf "%v" .) }}{{ end }}
+            {{ if not $img_alt }}{{ $img_alt = index $item "role" }}{{ end }}
+            <figure class="knotbot-step-diagram mt-5 max-w-2xl">
+              <img src="{{ $img_href | safeURL }}" alt="{{ $img_alt | plainify }}" class="w-full h-auto rounded-lg border border-gray-200 dark:border-white/[0.08] shadow-sm" loading="lazy" decoding="async" />
+            </figure>
           {{ end }}
 
           {{ $video_raw := "" }}

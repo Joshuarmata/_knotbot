@@ -270,7 +270,7 @@ sections:
           <div class="knotbot-placeholder knotbot-video-placeholder">
             <div class="knotbot-placeholder-icon">▶</div>
             <div class="knotbot-placeholder-label">Step-by-Step Breakdown</div>
-            <div class="knotbot-placeholder-sub">Slow-motion overview (steps 0–5); per-step clips are in How It Works — drop video here</div>
+            <div class="knotbot-placeholder-sub">Slow-motion overview (steps 0–6); per-step clips are in How It Works — drop video here</div>
           </div>
           <div class="knotbot-placeholder knotbot-image-placeholder">
             <div class="knotbot-placeholder-icon">🖼</div>
