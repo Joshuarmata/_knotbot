@@ -12,6 +12,9 @@ main:
   - name: How It Works
     url: /#steps
     weight: 30
+  - name: Computer Vision
+    url: /#vision
+    weight: 35
   - name: Tech Stack
     url: /#tech
     weight: 40

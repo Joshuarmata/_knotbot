@@ -98,92 +98,13 @@ sections:
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
 
-  # How It Works — 6-Step Sequence
+  # How It Works — timeline copy lives in data/authors/me.yaml → `experience` (Hugo Blox resume-experience ignores block `items`).
   - block: resume-experience
     id: steps
     content:
       title: "How It Works"
       subtitle: "A six-step geometric manipulation sequence"
       date_format: ""
-      items:
-        - title: "Step 1 — Identify the Crossing Point"
-          company: "Visual Perception"
-          company_url: ''
-          company_logo: ''
-          location: "Color Detection + Depth Estimation"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The camera detects four colored tape landmarks (yellow, red, green, blue) on the
-            workspace using HSV filtering. Depth values from the aligned RealSense depth stream
-            are used to localize each color blob in 3D (base_link frame). An ArUco marker
-            calibrates the table-plane Z to compensate for IR absorption by colored tape.
-            The robot computes the target crossing point: the projection of the yellow rope
-            tip onto the perpendicular bisector of the green–blue line.
-
-        - title: "Step 2 — Grasp the Rope End"
-          company: "Grasp Planning"
-          company_url: ''
-          company_logo: ''
-          location: "SVD Best-Fit + Reflection Geometry"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The system finds the yellow rope point farthest from the green–blue reference line.
-            SVD best-fit over all yellow pixel positions determines the rope's tangent direction
-            so the gripper can align perpendicular to the rope for a reliable grasp.
-            The drop goal is computed as a pure geometric reflection of the grasp point across
-            the green–blue reference line, placing the rope on the opposite side.
-
-        - title: "Step 3 — Form the Loop"
-          company: "Loop Formation"
-          company_url: ''
-          company_logo: ''
-          location: "Perpendicular Bisector Reflection"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The blue rope centroid is reflected across the perpendicular bisector of the
-            green–red segment. This creates the open loop structure needed for the rope
-            end to pass through and complete the overhand knot topology.
-
-        - title: "Step 4 — Thread the Rope End"
-          company: "Threading"
-          company_url: ''
-          company_logo: ''
-          location: "Line Intersection Targeting"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The target is the intersection of two lines: the bisector through the blue
-            centroid (perpendicular to the blue best-fit direction) and the perpendicular
-            from the farthest yellow point to the green–red segment. This intersection
-            positions the gripper to thread the rope end through the formed loop.
-
-        - title: "Step 5 — Tighten the Knot"
-          company: "Tightening"
-          company_url: ''
-          company_logo: ''
-          location: "Midpoint Targeting"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The robot moves to the midpoint between the blue and yellow rope centroids.
-            This position draws both rope segments toward the center, beginning the
-            tightening phase of the overhand knot.
-
-        - title: "Step 6 — Final Tuck & Release"
-          company: "Completion"
-          company_url: ''
-          company_logo: ''
-          location: "Averaged Direction Projection"
-          date_start: ''
-          date_end: ''
-          description: |2-
-            The gripper moves to a point projected along the averaged direction of the
-            red→blue and green→blue vectors, at a distance equal to the total span
-            of the rope geometry. The rope is released, completing the overhand knot.
-            Force/torque feedback from the robot's wrist sensor confirms rope tension.
     design:
       columns: '1'
       background:
@@ -373,6 +294,15 @@ sections:
       title: "The Team"
       subtitle: "EE 106A Project — Spring 2026, UC Berkeley"
       text: |-
+        <h3 class="knotbot-section-subheading">Education</h3>
+        <div class="knotbot-team-card knotbot-education-card">
+          <div class="knotbot-team-info knotbot-education-body">
+            <h3 class="knotbot-education-degree">EE 106A — Introduction to Robotics</h3>
+            <p class="knotbot-education-meta">UC Berkeley · Jan 2026 – May 2026</p>
+            <p class="knotbot-education-summary">Final project: KnotBot — an autonomous rope knot-tying robot. Team: Joshua Mata, Allison Dana.</p>
+          </div>
+        </div>
+        <h3 class="knotbot-section-subheading knotbot-section-subheading-spaced">Team</h3>
         <div class="knotbot-team-grid">
           <div class="knotbot-team-card">
             <div class="knotbot-team-avatar">

@@ -207,6 +207,49 @@ section#hero.blox-dev-hero
   line-height: 1.5;
 }
 
+.knotbot-section-subheading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.knotbot-section-subheading-spaced {
+  margin-top: 2.5rem;
+}
+
+.knotbot-education-card {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.knotbot-education-degree {
+  font-size: 1.05rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.knotbot-education-meta {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  margin: 0 0 0.75rem !important;
+  color: rgba(99, 102, 241, 0.95);
+}
+
+.dark .knotbot-education-meta {
+  color: rgba(165, 180, 252, 0.95);
+}
+
+.knotbot-education-summary {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin: 0 !important;
+  line-height: 1.55;
+}
+
 /* Dev-hero: hide author portrait (circular image above the title) */
 section#hero .relative.z-10.mx-auto.max-w-5xl > div.mb-8:has(img.object-cover) {
   display: none !important;
