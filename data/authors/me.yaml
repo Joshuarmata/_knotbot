@@ -42,6 +42,7 @@ experience:
     summary: |
       The rope starts in a staged layout with green, yellow, blue, and red tape landmarks.
       This phase establishes the baseline geometry before crossing and grasp motions.
+      A full-frame classifier (same RealSense view used for visual servoing) should read <code>step0</code> here; the <code>rope_knot_infer</code> HUD shows confidence plus a rope-mask heuristic score.
       A walkthrough video will be added here when ready.
   - role: "Step 1 — Cross"
     org: "Visual Perception — Color Detection + Depth Estimation"
@@ -56,6 +57,7 @@ experience:
       calibrates the table-plane Z to compensate for IR absorption by colored tape.
       The robot computes the target crossing point: the projection of the yellow rope
       tip onto the perpendicular bisector of the green–blue line.
+      In parallel, knot-step perception labels the frame as <code>step1</code> when the rope has crossed—matching the geometric crossing target used by the controller.
   - role: "Step 2 — Flip"
     org: "Grasp Planning — SVD Best-Fit + Reflection Geometry"
     skip_dates: true

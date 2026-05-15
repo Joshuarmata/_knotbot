@@ -9,6 +9,7 @@ tags:
   - Manipulation
 tech_stack:
   - Python
+  - PyTorch
   - ROS2
   - MoveIt
   - OpenCV
@@ -25,10 +26,10 @@ role: "EE 106A Final Project"
 duration: "Spring 2026"
 team_size: 2
 highlights:
-  - "6-step autonomous knot-tying sequence"
-  - "Real-time HSV color segmentation + depth estimation"
+  - "7-phase autonomous knot-tying sequence (steps 0–6)"
+  - "Geometric visual servoing: HSV + RealSense + SVD line fits → MoveIt goals"
+  - "Knot-step perception: supervised full-frame ResNet18 (rope_knot_infer HUD)"
   - "ArUco-based table-plane calibration for IR-absorbing tape"
-  - "SVD best-fit line fitting for rope orientation"
   - "MoveIt IK + trajectory control"
 ---
 
@@ -38,7 +39,7 @@ KnotBot autonomously ties an overhand knot in a rope using a UR7e 6-DOF robot ar
 
 KnotBot is the final project for **EE 106A — Introduction to Robotics** at UC Berkeley (Spring 2026). The system combines visual perception, geometric planning, and closed-loop robot control to perform a task that requires sub-centimeter precision: tying a knot in a rope.
 
-The robot uses an **Intel RealSense D435** depth camera mounted on its wrist to perceive the workspace in real time, detects the positions of colored rope/tape landmarks, computes the geometry of each manipulation step, and executes a six-step sequence via **MoveIt** motion planning.
+The robot uses an **Intel RealSense D435** depth camera mounted on its wrist to perceive the workspace in real time, detects the positions of colored rope/tape landmarks, computes the geometry of each manipulation phase, and executes a **seven-phase** sequence (steps 0–6) via **MoveIt** motion planning and ROS2 visual servoing. A separate **rope knot perception** pipeline performs supervised full-frame classification of knot phases (e.g. `step0`, `step1`) for monitoring and tooling—see the homepage **Visual Pipeline** section for how that sits next to the geometric servo loop.
 
 ---
 

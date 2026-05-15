@@ -55,8 +55,8 @@ sections:
         guided entirely by real-time visual feedback from an **Intel RealSense D435** depth camera.
 
         The robot perceives the spatial layout of colored rope segments, computes the geometric
-        transformations needed for each knot-tying step, and executes a six-step manipulation
-        sequence using **MoveIt** motion planning and **ROS2** visual servoing.
+        transformations needed for each knot-tying phase, and executes a **seven-phase** manipulation
+        sequence (steps 0–6) using **MoveIt** motion planning and **ROS2** visual servoing.
 
         Key challenges addressed include depth estimation of color-absorbing rope (which defeats
         standard IR depth sensors), robust 3D localization via ArUco marker calibration, and
@@ -103,7 +103,7 @@ sections:
     id: steps
     content:
       title: "How It Works"
-      subtitle: "A six-step geometric manipulation sequence"
+      subtitle: "Seven phases (steps 0–6): geometry on the arm, knot-step labels from vision"
       date_format: ""
     design:
       columns: '1'
@@ -119,8 +119,13 @@ sections:
     id: vision
     content:
       title: "Visual Pipeline"
-      subtitle: "From raw pixels to 3D robot poses"
+      subtitle: "From raw pixels to 3D robot poses — and global knot-step labels"
       text: |-
+        <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-center leading-relaxed mb-6">
+          <strong>Visual servoing</strong> on KnotBot is driven by dense geometry: HSV blobs, RealSense depth, and SVD line fits become 3D goals in <code>base_link</code> for MoveIt.
+          Alongside that path, the <strong>rope knot perception</strong> package adds <strong>supervised full-image classification</strong> (fine-tuned ResNet18) that predicts a discrete knot phase such as <code>step0</code> or <code>step1</code> from the whole frame—ideal for sanity checks, logging, and future gating while the arm tracks the geometric pipeline below.
+        </p>
+
         <div class="knotbot-pipeline">
           <div class="knotbot-pipeline-step">
             <div class="knotbot-pipeline-num">01</div>
@@ -158,21 +163,47 @@ sections:
             <div class="knotbot-pipeline-num">05</div>
             <div class="knotbot-pipeline-content">
               <strong>Goal Computation</strong>
-              <p>Geometric algorithms compute step-specific waypoints (reflections, intersections, midpoints) and publish them as RViz markers + TF frames.</p>
+              <p>Geometric algorithms compute step-specific waypoints (reflections, intersections, midpoints) and publish RViz markers + TF frames—the quantities the servo loop actually tracks each cycle.</p>
             </div>
           </div>
         </div>
 
-        <div class="knotbot-media-grid" style="margin-top:2rem;">
+        <div class="knotbot-pipeline-callout prose dark:prose-invert max-w-none text-sm text-gray-700 dark:text-gray-300">
+          <p class="mt-0 mb-2 font-semibold text-gray-900 dark:text-white">Knot-step perception (EE106 handoff)</p>
+          <ul class="my-0 pl-5 space-y-1.5">
+            <li><strong>Recommended path:</strong> ResNet18 fine-tuned on whole images; outputs a class label per folder (e.g. <code>step0</code>, <code>step1</code>). This is standard <strong>computer vision / supervised classification</strong>—not a language model.</li>
+            <li><strong>Legacy path:</strong> OpenCV builds a rope mask, derives a compact symbolic string, then sklearn CountVectorizer + LogisticRegression classifies it (still not an LLM).</li>
+            <li><strong>Training bundle:</strong> <code>dataset.csv</code> (columns <code>image_path</code>, <code>step_label</code>; optional <code>depth_path</code>), plus <code>model_best.pt</code>, <code>classes.json</code>, and <code>meta.json</code> in the checkpoint directory consumed by inference.</li>
+            <li><strong>ROS-adjacent CLIs</strong> (Linux lab): <code>rope_knot_build_dataset</code>, <code>rope_knot_train_fullframe</code>, <code>rope_knot_infer</code>, etc., live under the same <code>visual_servoing</code> package tree as the geometric nodes—so perception and servoing stay one conceptual stack.</li>
+            <li><strong>macOS / no ROS:</strong> local venv, <code>PYTHONPATH</code> pointing at <code>final_project/src/visual_servoing</code>, then CSV build → <code>train_fullframe_classifier</code> → <code>infer_local</code> (webcam, video, or image). Webcam capture uses <code>CAP_AVFOUNDATION</code> on Darwin; use real <code>opencv-python</code> (not headless) and grant Terminal/iTerm camera access if the first frame never arrives.</li>
+          </ul>
+        </div>
+
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-3">Live inference HUD (<code>rope_knot_infer</code>)</h3>
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
+          OpenCV window from <code>infer_local</code>: predicted <strong>step</strong> + confidence, plus <strong>rope_heuristic_score</strong> from the rope mask—parallel readouts to the geometric overlays used for visual servoing.
+        </p>
+        <div class="knotbot-media-grid" style="margin-top:0;">
+          <figure class="knotbot-vision-figure">
+            <img src="media/visual-pipeline/rope-knot-infer-step0.png" alt="rope_knot_infer: classified as step0 with confidence 0.89 and rope_heuristic_score 0.774" width="960" height="540" loading="lazy" decoding="async" />
+            <figcaption><strong>step0</strong> — classifier confidence 0.89; rope mask heuristic 0.774. Yellow workspace mask highlights the segmented region used with the white rope and colored tape landmarks.</figcaption>
+          </figure>
+          <figure class="knotbot-vision-figure">
+            <img src="media/visual-pipeline/rope-knot-infer-step1.png" alt="rope_knot_infer: classified as step1 with confidence 0.74 and rope_heuristic_score 0.947" width="960" height="540" loading="lazy" decoding="async" />
+            <figcaption><strong>step1</strong> — confidence 0.74; heuristic 0.947 on a crossed loop configuration. Same camera stack as geometric blob tracking, framed for full-frame phase recognition.</figcaption>
+          </figure>
+        </div>
+
+        <div class="knotbot-media-grid knotbot-gallery-grid" style="margin-top:2rem;">
           <div class="knotbot-placeholder knotbot-image-placeholder">
             <div class="knotbot-placeholder-icon">🖼</div>
             <div class="knotbot-placeholder-label">RViz Visualization</div>
-            <div class="knotbot-placeholder-sub">Screenshot of color detection overlays and step goal markers in RViz — drop image here</div>
+            <div class="knotbot-placeholder-sub">Color detection overlays and step goal markers in RViz — drop screenshot here</div>
           </div>
           <div class="knotbot-placeholder knotbot-image-placeholder">
             <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Camera View with Detections</div>
-            <div class="knotbot-placeholder-sub">Raw camera feed with bounding boxes for each detected color — drop image here</div>
+            <div class="knotbot-placeholder-label">Geometric detection overlay</div>
+            <div class="knotbot-placeholder-sub">Per-blob HSV + depth back-projection view — drop screenshot here</div>
           </div>
         </div>
     design:
@@ -205,6 +236,8 @@ sections:
           items:
             - name: OpenCV
               icon: devicon/opencv
+            - name: PyTorch
+              icon: devicon/python
             - name: NumPy
               icon: devicon/numpy
             - name: cv_bridge
