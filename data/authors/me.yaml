@@ -39,11 +39,11 @@ experience:
     skip_dates: true
     image: media/how-it-works/step-0-set.png
     image_alt: "Diagram: colored rope segments before and after the initial set configuration"
+    video: "https://youtube.com/shorts/HCK8wHHXjOs"
     summary: |
       The rope starts in a staged layout with green, yellow, blue, and red tape landmarks.
       This phase establishes the baseline geometry before crossing and grasp motions.
       A full-frame classifier (same RealSense view used for visual servoing) should read <code>step0</code> here; the <code>rope_knot_infer</code> HUD shows confidence plus a rope-mask heuristic score.
-      A walkthrough video will be added here when ready.
   - role: "Step 1 — Cross"
     org: "Visual Perception — Color Detection + Depth Estimation"
     skip_dates: true
