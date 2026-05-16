@@ -72,6 +72,8 @@ experience:
   - role: "Step 3 — Form the Loop"
     org: "Loop Formation — Perpendicular Bisector Reflection"
     skip_dates: true
+    image: media/how-it-works/step-3-form-loop.png
+    image_alt: "Diagram: moving the rope end through the center of the loop"
     video: "https://youtube.com/shorts/ZJo2v69Jv0A?feature=share"
     summary: |
       The blue rope centroid is reflected across the perpendicular bisector of the
@@ -91,7 +93,7 @@ experience:
   - role: "Step 5 — Tighten & Release"
     org: "Completion — midpoint draw-down, tuck, and release"
     skip_dates: true
-    image: media/how-it-works/step-6-pull.png
+    image: media/how-it-works/step-5-pull.png
     image_alt: "Diagram: pulling to tighten the knot and finishing the motion"
     video: "https://youtube.com/shorts/wegP1dggHmc"
     summary: |
