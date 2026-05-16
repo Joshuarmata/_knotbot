@@ -42,6 +42,21 @@ section#hero.blox-dev-hero
   border: 0;
 }
 
+/* Demo (#demo): shorts player wider than default 26rem pillar */
+section#demo .knotbot-youtube-short--demo-wide {
+  max-width: min(40rem, 94vw);
+}
+
+section#demo > .flex.max-w-prose {
+  max-width: min(72rem, 96vw);
+  width: 100%;
+}
+
+section#demo .prose.max-w-prose {
+  max-width: 100%;
+  width: 100%;
+}
+
 /* Media placeholder grid */
 .knotbot-media-grid {
   display: grid;

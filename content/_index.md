@@ -77,8 +77,8 @@ sections:
       title: "Demo"
       subtitle: "KnotBot in action"
       text: |-
-        <div class="max-w-4xl mx-auto mb-10">
-          <div class="knotbot-youtube-short">
+        <div class="max-w-5xl mx-auto mb-10">
+          <div class="knotbot-youtube-short knotbot-youtube-short--demo-wide">
             <iframe
               src="https://www.youtube-nocookie.com/embed/gUvkJyTCKFg?rel=0"
               title="KnotBot — full knot-tying demo"
@@ -188,18 +188,7 @@ sections:
           </figure>
         </div>
 
-        <div class="knotbot-pipeline-callout prose dark:prose-invert max-w-none text-sm text-gray-700 dark:text-gray-300">
-          <p class="mt-0 mb-2 font-semibold text-gray-900 dark:text-white">Knot-step perception (EE106 handoff)</p>
-          <ul class="my-0 pl-5 space-y-1.5">
-            <li><strong>Recommended path:</strong> ResNet18 fine-tuned on whole images; outputs a class label per folder (e.g. <code>step0</code>, <code>step1</code>). This is standard <strong>computer vision / supervised classification</strong>—not a language model.</li>
-            <li><strong>Legacy path:</strong> OpenCV builds a rope mask, derives a compact symbolic string, then sklearn CountVectorizer + LogisticRegression classifies it (still not an LLM).</li>
-            <li><strong>Training bundle:</strong> <code>dataset.csv</code> (columns <code>image_path</code>, <code>step_label</code>; optional <code>depth_path</code>), plus <code>model_best.pt</code>, <code>classes.json</code>, and <code>meta.json</code> in the checkpoint directory consumed by inference.</li>
-            <li><strong>ROS-adjacent CLIs</strong> (Linux lab): <code>rope_knot_build_dataset</code>, <code>rope_knot_train_fullframe</code>, <code>rope_knot_infer</code>, etc., live under the same <code>visual_servoing</code> package tree as the geometric nodes—so perception and servoing stay one conceptual stack.</li>
-            <li><strong>macOS / no ROS:</strong> local venv, <code>PYTHONPATH</code> pointing at <code>final_project/src/visual_servoing</code>, then CSV build → <code>train_fullframe_classifier</code> → <code>infer_local</code> (webcam, video, or image). Webcam capture uses <code>CAP_AVFOUNDATION</code> on Darwin; use real <code>opencv-python</code> (not headless) and grant Terminal/iTerm camera access if the first frame never arrives.</li>
-          </ul>
-        </div>
-
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-3">Live inference HUD (<code>rope_knot_infer</code>)</h3>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-3">BONUS: Knot Step Recognition with Language Model</h3>
         <p class="text-center text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
           OpenCV window from <code>infer_local</code>: predicted <strong>step</strong> + confidence, plus <strong>rope_heuristic_score</strong> from the rope mask—parallel readouts to the geometric overlays used for visual servoing.
         </p>
