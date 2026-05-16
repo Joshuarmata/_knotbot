@@ -29,8 +29,7 @@ interests:
   - Visual Servoing
   - ROS2 & MoveIt
 
-# Education copy is rendered in the Team section (`content/_index.md`); keep it out of `education:` here
-# so it does not appear under How It Works (resume-experience block).
+# Keep `education:` empty so nothing renders under How It Works (resume-experience block).
 
 # How It Works: steps 0–5. Optional `image` (site-relative or absolute URL), `video` (YouTube).
 experience:

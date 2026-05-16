@@ -275,15 +275,6 @@ sections:
       title: "The Team"
       subtitle: "EE 106A Project — Spring 2026, UC Berkeley"
       text: |-
-        <h3 class="knotbot-section-subheading">Education</h3>
-        <div class="knotbot-team-card knotbot-education-card">
-          <div class="knotbot-team-info knotbot-education-body">
-            <h3 class="knotbot-education-degree">EE 106A — Introduction to Robotics</h3>
-            <p class="knotbot-education-meta">UC Berkeley · Jan 2026 – May 2026</p>
-            <p class="knotbot-education-summary">Final project: KnotBot — an autonomous rope knot-tying robot. Team: Joshua Mata, Allison Dana.</p>
-          </div>
-        </div>
-        <h3 class="knotbot-section-subheading knotbot-section-subheading-spaced">Team</h3>
         <div class="knotbot-team-grid">
           <div class="knotbot-team-card">
             <div class="knotbot-team-avatar">
