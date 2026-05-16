@@ -190,7 +190,7 @@ sections:
 
         <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-3">BONUS: Knot Step Recognition with Language Model</h3>
         <p class="text-center text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
-          OpenCV window from <code>infer_local</code>: predicted <strong>step</strong> + confidence, plus <strong>rope_heuristic_score</strong> from the rope mask—parallel readouts to the geometric overlays used for visual servoing.
+          OpenCV: predicted <strong>step</strong> + confidence, plus <strong>rope_heuristic_score</strong> from the rope mask—parallel readouts to the geometric overlays used for visual servoing. We only had time to train a model on the first two steps, but we are including these as a proof of concept!
         </p>
         <div class="knotbot-media-grid" style="margin-top:0;">
           <figure class="knotbot-vision-figure">
