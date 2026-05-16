@@ -18,11 +18,6 @@ affiliations:
   - name: UC Berkeley EECS
     url: https://eecs.berkeley.edu
 
-links:
-  - icon: brands/github
-    url: https://github.com
-    label: GitHub
-
 interests:
   - Robot Manipulation
   - Computer Vision
