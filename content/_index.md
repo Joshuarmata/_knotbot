@@ -268,54 +268,6 @@ sections:
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
 
-  # Media Gallery
-  - block: markdown
-    id: gallery
-    content:
-      title: "Media Gallery"
-      subtitle: "Photos and videos of KnotBot"
-      text: |-
-        <div class="knotbot-media-grid knotbot-gallery-grid">
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Robot Setup</div>
-            <div class="knotbot-placeholder-sub">UR7e arm with RealSense camera mounted at wrist — drop image here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Workspace Layout</div>
-            <div class="knotbot-placeholder-sub">Table with colored tape markers and rope — drop image here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Grasp in Progress</div>
-            <div class="knotbot-placeholder-sub">Robot gripper grasping rope end (Step 2) — drop image here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Knot Completion</div>
-            <div class="knotbot-placeholder-sub">Finished overhand knot after Step 5 — drop image here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-video-placeholder">
-            <div class="knotbot-placeholder-icon">▶</div>
-            <div class="knotbot-placeholder-label">Step-by-Step Breakdown</div>
-            <div class="knotbot-placeholder-sub">Slow-motion overview (steps 0–5); per-step clips are in How It Works — drop video here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Team Photo</div>
-            <div class="knotbot-placeholder-sub">Joshua Mata and Allison Dana — drop image here</div>
-          </div>
-        </div>
-    design:
-      columns: '1'
-      background:
-        color:
-          light: "#f5f5f5"
-          dark: "#08080c"
-      spacing:
-        padding: ["4rem", "0", "4rem", "0"]
-
   # Team
   - block: markdown
     id: team
