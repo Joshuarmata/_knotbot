@@ -122,17 +122,14 @@ sections:
       title: "Visual Pipeline"
       subtitle: "From raw pixels to 3D robot poses — and global knot-step labels"
       text: |-
-        <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-center leading-relaxed mb-6">
-          <strong>Visual servoing</strong> on KnotBot is driven by dense geometry: HSV blobs, RealSense depth, and SVD line fits become 3D goals in <code>base_link</code> for MoveIt.
-          Alongside that path, the <strong>rope knot perception</strong> package adds <strong>supervised full-image classification</strong> (fine-tuned ResNet18) that predicts a discrete knot phase such as <code>step0</code> or <code>step1</code> from the whole frame—ideal for sanity checks, logging, and future gating while the arm tracks the geometric pipeline below.
-        </p>
+
 
         <div class="knotbot-pipeline">
           <div class="knotbot-pipeline-step">
             <div class="knotbot-pipeline-num">01</div>
             <div class="knotbot-pipeline-content">
               <strong>Color Segmentation</strong>
-              <p>HSV masking isolates yellow, red, green, and blue rope/tape blobs. Morphological operations (open/close) remove noise.</p>
+              <p>HSV masking isolates yellow, red, green, and blue rope/tape. We experiened a lot of noise, so we put caps on the max size and min size of the bounding boxes we were detecting.</p>
             </div>
           </div>
           <div class="knotbot-pipeline-arrow">→</div>
@@ -140,7 +137,7 @@ sections:
             <div class="knotbot-pipeline-num">02</div>
             <div class="knotbot-pipeline-content">
               <strong>Depth Estimation</strong>
-              <p>Aligned RealSense depth stream provides Z values per blob. ArUco marker (ID 1, 150mm) calibrates the table-plane Z for IR-absorbing tape.</p>
+              <p>Aligned RealSense depth stream provides Z values per blob. We then used an ArUco marker to calibrate the table-plane Z to counteract the camera warping.</p>
             </div>
           </div>
           <div class="knotbot-pipeline-arrow">→</div>
@@ -148,7 +145,7 @@ sections:
             <div class="knotbot-pipeline-num">03</div>
             <div class="knotbot-pipeline-content">
               <strong>3D Localization</strong>
-              <p>Camera intrinsics back-project 2D centroids to 3D camera frame. TF2 transforms to base_link give robot-relative coordinates.</p>
+              <p>We then expressed the pose in the base frame of our UR7e.</p>
             </div>
           </div>
           <div class="knotbot-pipeline-arrow">→</div>
@@ -156,7 +153,7 @@ sections:
             <div class="knotbot-pipeline-num">04</div>
             <div class="knotbot-pipeline-content">
               <strong>Best-Fit Lines</strong>
-              <p>SVD over color blob point clouds produces best-fit line axes and orientations. Broadcast as TF frames for MoveIt targeting.</p>
+              <p>We used a best-fit line axes across the point cloud to determine pose and orientations of the tape for more accurate orientation.</p>
             </div>
           </div>
           <div class="knotbot-pipeline-arrow">→</div>
@@ -164,14 +161,14 @@ sections:
             <div class="knotbot-pipeline-num">05</div>
             <div class="knotbot-pipeline-content">
               <strong>Goal Computation</strong>
-              <p>Geometric algorithms compute step-specific waypoints (reflections, intersections, midpoints) and publish RViz markers + TF frames—the quantities the servo loop actually tracks each cycle.</p>
+              <p>Geometric algorithms compute step-specific waypoints (reflections, intersections, midpoints) and publish RViz markers + TF frames—the quantities the servo loop actually tracks each cycle. So if we move the rope, the goal moves as well. This allows us to recalculate the rope pose after every knot step. </p>
             </div>
           </div>
         </div>
 
         <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-2">Geometric perception in RViz</h3>
         <p class="text-center text-sm text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6">
-          ROS 2 RViz connects the wrist camera (<strong>Image</strong> display), MoveIt motion planning, and marker arrays keyed to rope landmarks—the same perceptual quantities that close the visual servoing loop toward each phase’s waypoint in <code>base_link</code>.
+  
         </p>
         <div class="knotbot-media-grid knotbot-gallery-grid" style="margin-top:0;">
           <figure class="knotbot-vision-figure">
@@ -180,11 +177,11 @@ sections:
           </figure>
           <figure class="knotbot-vision-figure">
             <img src="media/visual-pipeline/rviz-point-cloud-from-bboxes.png" alt="RViz screenshot: sparse 3D point cloud generated inside each bounding box region" width="960" height="540" loading="lazy" decoding="async" />
-            <figcaption><strong>3D points per color</strong> — pixels inside each box are lifted with calibrated intrinsics + RealSense depth (with ArUco table-plane fallback) to populate marker clouds in front of MoveIt.</figcaption>
+            <figcaption><strong>3D points per color</strong> — pixels inside each box are lifted with calibrated intrinsics + RealSense depth (with ArUco table/plane fallback).</figcaption>
           </figure>
           <figure class="knotbot-vision-figure">
             <img src="media/visual-pipeline/rviz-line-best-fit.png" alt="RViz screenshot: principal line of best fit through a rope color point cloud" width="960" height="540" loading="lazy" decoding="async" />
-            <figcaption><strong>SVD axis</strong> — a line of best fit through each rope/tape cluster defines the tangent orientation published as TF for grasp alignment and step-specific geometry.</figcaption>
+            <figcaption><strong>SVD axis</strong> — a line of best fit through each rope/tape cluster defines the tangent orientation published as TF for grasp alignment.</figcaption>
           </figure>
         </div>
 
