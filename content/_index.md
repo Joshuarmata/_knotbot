@@ -306,26 +306,5 @@ sections:
           light: "#ffffff"
           dark: "#0d0d12"
       spacing:
-        padding: ["4rem", "0", "4rem", "0"]
-
-  # CTA / Links
-  - block: cta-card
-    content:
-      title: "Explore the Code & Report"
-      text: |-
-        View the full source code, technical report, and additional documentation for KnotBot.
-      button:
-        text: 'View on GitHub'
-        url: 'https://github.com'
-        new_tab: true
-    design:
-      card:
-        css_class: 'bg-gradient-to-br from-primary-200 via-primary-100 to-secondary-200 dark:from-primary-600 dark:via-primary-700 dark:to-secondary-700'
-        text_color: dark
-      background:
-        color:
-          light: "#f5f5f5"
-          dark: "#08080c"
-      spacing:
         padding: ["4rem", "0", "6rem", "0"]
 ---
