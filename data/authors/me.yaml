@@ -28,75 +28,54 @@ interests:
 
 # How It Works: steps 0–5. Optional `image` (site-relative or absolute URL), `video` (YouTube).
 experience:
-  - role: "Step 0 — Set"
-    org: "Initial rope layout on the workspace"
+  - role: "Step 0 — Starting Pose"
+    org: "Predetermined layout before knot tying"
     skip_dates: true
     image: media/how-it-works/step-0-set.png
-    image_alt: "Diagram: colored rope segments before and after the initial set configuration"
+    image_alt: "Diagram: moving the rope into a semicircle starting configuration"
     video: "https://youtube.com/shorts/4NHGYzXnru4?feature=share"
     summary: |
-      The rope starts in a staged layout with green, yellow, blue, and red tape landmarks.
-      This phase establishes the baseline geometry before crossing and grasp motions.
-      A full-frame classifier (same RealSense view used for visual servoing) should read <code>step0</code> here; the <code>rope_knot_infer</code> HUD shows confidence plus a rope-mask heuristic score.
-  - role: "Step 1 — Cross"
-    org: "Visual Perception — Color Detection + Depth Estimation"
+      The rope can start in any configuration, but to make the knot-tying sequence reliable we first move to a predetermined pose. The robot reads that layout, then grasps the blue tape marker and the red tape marker to form a makeshift semicircle as the starting point. The same procedure could instead use the green or yellow markers if desired.
+  - role: "Step 1 — Crossing Red"
+    org: "Green–blue reference line and perpendicular bisector"
     skip_dates: true
     image: media/how-it-works/step-1-cross.png
-    image_alt: "Diagram: crossing the red rope end over the body of the rope"
+    image_alt: "Diagram: crossing the red tape over the rope body"
     video: "https://youtu.be/QGwxxTDsUf4"
     summary: |
-      The camera detects four colored tape landmarks (yellow, red, green, blue) on the
-      workspace using HSV filtering. Depth values from the aligned RealSense depth stream
-      are used to localize each color blob in 3D (base_link frame). An ArUco marker
-      calibrates the table-plane Z to compensate for IR absorption by colored tape.
-      The robot computes the target crossing point: the projection of the yellow rope
-      tip onto the perpendicular bisector of the green–blue line.
-      In parallel, knot-step perception labels the frame as <code>step1</code> when the rope has crossed—matching the geometric crossing target used by the controller.
-  - role: "Step 2 — Flip"
-    org: "Grasp Planning — SVD Best-Fit + Reflection Geometry"
+      The camera detects four colored tape landmarks (yellow, red, green, blue). From those positions the robot computes a crossing target: a line is drawn between the blue and green tape (the green–blue reference line), and the perpendicular bisector of that line is found relative to the yellow tape. The red tape is picked up and placed at the new goal position a few inches beyond for a crossing motion. As the red tape moves, it is twisted during the cross.
+  - role: "Step 2 — The Flip"
+    org: "Reflection across the green–blue line with an arched trajectory"
     skip_dates: true
     image: media/how-it-works/step-2-flip.png
-    image_alt: "Diagram: flipping the rope loop configuration"
+    image_alt: "Diagram: flipping the yellow tape across the reference line"
     video: "https://youtube.com/shorts/NT93a8iIzBE?feature=share"
     summary: |
-      The system finds the yellow rope point farthest from the green–blue reference line.
-      SVD best-fit over all yellow pixel positions determines the rope's tangent direction
-      so the gripper can align perpendicular to the rope for a reliable grasp.
-      The drop goal is computed as a pure geometric reflection of the grasp point across
-      the green–blue reference line, placing the rope on the opposite side.
-  - role: "Step 3 — Form the Loop"
-    org: "Loop Formation — Perpendicular Bisector Reflection"
+      The system repeats the same style of calculation, finding the yellow rope point farthest from the green–blue reference line. For every step, a line of best fit over the color pixel positions gives the rope tangent so the gripper can align perpendicular for a reliable grasp. The yellow tape is picked up; the drop goal is the geometric reflection of the grasp point across the green–blue reference line, placing the rope on the opposite side. The trajectory follows an arched path so the tape actually flips over.
+  - role: "Step 3 — Place Red Inside the Loop"
+    org: "Midpoint between yellow and blue bounding boxes"
     skip_dates: true
     image: media/how-it-works/step-3-form-loop.png
-    image_alt: "Diagram: moving the rope end through the center of the loop"
+    image_alt: "Diagram: threading the red tape through the center of the loop"
     video: "https://youtube.com/shorts/ZJo2v69Jv0A?feature=share"
     summary: |
-      The blue rope centroid is reflected across the perpendicular bisector of the
-      green–red segment. This creates the open loop structure needed for the rope
-      end to pass through and complete the overhand knot topology.
-  - role: "Step 4 — Center"
-    org: "Threading — Line Intersection Targeting"
+      We draw a line segment from the midpoint of the yellow bounding box to the midpoint of the blue bounding box. The midpoint of that segment is the goal pose; the red tape is moved there with a 90° twist to seat it inside the loop.
+  - role: "Step 4 — Blue Flip"
+    org: "Mean-line flip to form the final loop"
     skip_dates: true
     image: media/how-it-works/step-4-center.png
-    image_alt: "Diagram: moving the rope end into the center of the loop"
+    image_alt: "Diagram: blue flip across the mean of two reference lines"
     video: "https://youtube.com/shorts/pujQQuupZSc?feature=share"
     summary: |
-      The target is the intersection of two lines: the bisector through the blue
-      centroid (perpendicular to the blue best-fit direction) and the perpendicular
-      from the farthest yellow point to the green–red segment. This intersection
-      positions the gripper to thread the rope end through the formed loop.
-  - role: "Step 5 — Tighten & Release"
-    org: "Completion — midpoint draw-down, tuck, and release"
+      Step 4 repeats a flip similar to Step 2, but the target is the mean of two lines: the green–blue reference line and a line between the blue and yellow points. The blue tape is dragged across that mean line by a distance equal to the separation between the green and blue tape, creating the final loop of the knot.
+  - role: "Step 5 — Pull"
+    org: "Tighten and release"
     skip_dates: true
     image: media/how-it-works/step-5-pull.png
-    image_alt: "Diagram: pulling to tighten the knot and finishing the motion"
+    image_alt: "Diagram: pulling the red tape to tighten the finished knot"
     video: "https://youtube.com/shorts/wegP1dggHmc"
     summary: |
-      After threading through the loop, the rope is tightened and finished in one closing phase:
-      the arm moves toward the midpoint between the blue and yellow rope centroids to pull both
-      segments toward the center, then advances along the averaged direction of the red→blue and
-      green→blue vectors (at the total span of the rope geometry). The rope is released, completing the
-      knot. Force/torque feedback from the wrist sensor confirms rope tension.
+      The robot detects the red tape and pulls it to a designated position to tighten the knot. The knot is complete and the robot releases the red tape.
 
 skills:
   - name: Robotics

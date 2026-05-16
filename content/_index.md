@@ -104,7 +104,7 @@ sections:
     id: steps
     content:
       title: "How It Works"
-      subtitle: "Six phases (steps 0–5): geometry on the arm, knot-step labels from vision"
+      subtitle: "Six phases (steps 0–5) from starting pose through pull and release"
       date_format: ""
     design:
       columns: '1'
