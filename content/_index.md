@@ -77,12 +77,20 @@ sections:
       title: "Demo"
       subtitle: "KnotBot in action"
       text: |-
-        <div class="knotbot-media-grid">
-          <div class="knotbot-placeholder knotbot-video-placeholder">
-            <div class="knotbot-placeholder-icon">▶</div>
-            <div class="knotbot-placeholder-label">Full Knot-Tying Demo</div>
-            <div class="knotbot-placeholder-sub">End-to-end video of KnotBot completing an overhand knot — drop video file here</div>
+        <div class="max-w-4xl mx-auto mb-10">
+          <div class="knotbot-youtube-short">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/gUvkJyTCKFg?rel=0"
+              title="KnotBot — full knot-tying demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"></iframe>
           </div>
+          <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
+            <a href="https://youtube.com/shorts/gUvkJyTCKFg" class="underline hover:text-primary-600 dark:hover:text-primary-400" target="_blank" rel="noopener">Watch on YouTube</a>
+          </p>
+        </div>
+        <div class="knotbot-media-grid">
           <div class="knotbot-placeholder knotbot-video-placeholder">
             <div class="knotbot-placeholder-icon">▶</div>
             <div class="knotbot-placeholder-label">Computer Vision Feed</div>
