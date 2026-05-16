@@ -139,19 +139,23 @@ Each color is detected using HSV thresholds tuned for the specific tape/rope col
 | Green | Table reference marker | H: 70–92, S: 120–255, V: 23–150 |
 | Blue | Table reference marker | H: 95–130, S: 70–255, V: 70–255 |
 
-### RViz Visualization
+### RViz visualization
 
-<div class="knotbot-media-grid">
-  <div class="knotbot-placeholder knotbot-image-placeholder">
-    <div class="knotbot-placeholder-icon">🖼</div>
-    <div class="knotbot-placeholder-label">RViz: Color Detections</div>
-    <div class="knotbot-placeholder-sub">Bounding boxes and 3D point clouds for each detected color in RViz — drop screenshot here</div>
-  </div>
-  <div class="knotbot-placeholder knotbot-image-placeholder">
-    <div class="knotbot-placeholder-icon">🖼</div>
-    <div class="knotbot-placeholder-label">RViz: Step Goal Markers</div>
-    <div class="knotbot-placeholder-sub">Step 0–5 goal spheres and TF frames visualized in RViz — drop screenshot here</div>
-  </div>
+<p class="text-sm text-gray-600 dark:text-gray-400 mb-4">ROS 2 + MoveIt (<code>ur_moveit_config</code>): bounding boxes → per-color 3D points → SVD line fits, aligned with the visual servoing pipeline on the homepage.</p>
+
+<div class="not-prose knotbot-media-grid knotbot-gallery-grid">
+  <figure class="knotbot-vision-figure">
+    <img src="../../media/visual-pipeline/rviz-bounding-boxes.png" alt="RViz: bounding boxes on color-detected rope regions" width="960" height="540" loading="lazy" decoding="async" />
+    <figcaption><strong>2D boxes</strong> — HSV blobs after thresholding, shown in the workspace view used for depth sampling.</figcaption>
+  </figure>
+  <figure class="knotbot-vision-figure">
+    <img src="../../media/visual-pipeline/rviz-point-cloud-from-bboxes.png" alt="RViz: 3D point cloud from pixels inside each bounding box" width="960" height="540" loading="lazy" decoding="async" />
+    <figcaption><strong>Point clouds</strong> — back-projected 3D points per color region for MoveIt + TF.</figcaption>
+  </figure>
+  <figure class="knotbot-vision-figure">
+    <img src="../../media/visual-pipeline/rviz-line-best-fit.png" alt="RViz: SVD line of best fit through rope point cloud" width="960" height="540" loading="lazy" decoding="async" />
+    <figcaption><strong>Line fit</strong> — principal axis for rope/tape orientation, broadcast for grasp and step geometry.</figcaption>
+  </figure>
 </div>
 
 ### Stereo Depth Fallback

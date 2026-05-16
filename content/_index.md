@@ -90,13 +90,6 @@ sections:
             <a href="https://youtube.com/shorts/gUvkJyTCKFg" class="underline hover:text-primary-600 dark:hover:text-primary-400" target="_blank" rel="noopener">Watch on YouTube</a>
           </p>
         </div>
-        <div class="knotbot-media-grid">
-          <div class="knotbot-placeholder knotbot-video-placeholder">
-            <div class="knotbot-placeholder-icon">▶</div>
-            <div class="knotbot-placeholder-label">Computer Vision Feed</div>
-            <div class="knotbot-placeholder-sub">Side-by-side camera view with color detection overlays — drop video file here</div>
-          </div>
-        </div>
     design:
       columns: '1'
       background:
@@ -176,6 +169,25 @@ sections:
           </div>
         </div>
 
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white text-center mt-10 mb-2">Geometric perception in RViz</h3>
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6">
+          ROS 2 RViz connects the wrist camera (<strong>Image</strong> display), MoveIt motion planning, and marker arrays keyed to rope landmarks—the same perceptual quantities that close the visual servoing loop toward each phase’s waypoint in <code>base_link</code>.
+        </p>
+        <div class="knotbot-media-grid knotbot-gallery-grid" style="margin-top:0;">
+          <figure class="knotbot-vision-figure">
+            <img src="media/visual-pipeline/rviz-bounding-boxes.png" alt="RViz screenshot: bounding boxes around color-detected rope and tape regions" width="960" height="540" loading="lazy" decoding="async" />
+            <figcaption><strong>2D segmentation</strong> — HSV-threshold blobs become axis-aligned bounding boxes in the overhead view before depth back-projection.</figcaption>
+          </figure>
+          <figure class="knotbot-vision-figure">
+            <img src="media/visual-pipeline/rviz-point-cloud-from-bboxes.png" alt="RViz screenshot: sparse 3D point cloud generated inside each bounding box region" width="960" height="540" loading="lazy" decoding="async" />
+            <figcaption><strong>3D points per color</strong> — pixels inside each box are lifted with calibrated intrinsics + RealSense depth (with ArUco table-plane fallback) to populate marker clouds in front of MoveIt.</figcaption>
+          </figure>
+          <figure class="knotbot-vision-figure">
+            <img src="media/visual-pipeline/rviz-line-best-fit.png" alt="RViz screenshot: principal line of best fit through a rope color point cloud" width="960" height="540" loading="lazy" decoding="async" />
+            <figcaption><strong>SVD axis</strong> — a line of best fit through each rope/tape cluster defines the tangent orientation published as TF for grasp alignment and step-specific geometry.</figcaption>
+          </figure>
+        </div>
+
         <div class="knotbot-pipeline-callout prose dark:prose-invert max-w-none text-sm text-gray-700 dark:text-gray-300">
           <p class="mt-0 mb-2 font-semibold text-gray-900 dark:text-white">Knot-step perception (EE106 handoff)</p>
           <ul class="my-0 pl-5 space-y-1.5">
@@ -200,19 +212,6 @@ sections:
             <img src="media/visual-pipeline/rope-knot-infer-step1.png" alt="rope_knot_infer: classified as step1 with confidence 0.74 and rope_heuristic_score 0.947" width="960" height="540" loading="lazy" decoding="async" />
             <figcaption><strong>step1</strong> — confidence 0.74; heuristic 0.947 on a crossed loop configuration. Same camera stack as geometric blob tracking, framed for full-frame phase recognition.</figcaption>
           </figure>
-        </div>
-
-        <div class="knotbot-media-grid knotbot-gallery-grid" style="margin-top:2rem;">
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">RViz Visualization</div>
-            <div class="knotbot-placeholder-sub">Color detection overlays and step goal markers in RViz — drop screenshot here</div>
-          </div>
-          <div class="knotbot-placeholder knotbot-image-placeholder">
-            <div class="knotbot-placeholder-icon">🖼</div>
-            <div class="knotbot-placeholder-label">Geometric detection overlay</div>
-            <div class="knotbot-placeholder-sub">Per-blob HSV + depth back-projection view — drop screenshot here</div>
-          </div>
         </div>
     design:
       columns: '1'
