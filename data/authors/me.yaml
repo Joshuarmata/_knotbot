@@ -12,7 +12,7 @@ role: "EE 106A — Introduction to Robotics, UC Berkeley, Spring 2026"
 bio: |
   KnotBot is an autonomous robotic system that ties knots using a UR7e 6-DOF robot arm.
   The system uses real-time computer vision, ROS2, and visual servoing to guide a robot
-  through a seven-phase knot-tying sequence (steps 0–6) on colored rope.
+  through a six-phase knot-tying sequence (steps 0–5) on colored rope.
 
 affiliations:
   - name: UC Berkeley EECS
@@ -32,7 +32,7 @@ interests:
 # Education copy is rendered in the Team section (`content/_index.md`); keep it out of `education:` here
 # so it does not appear under How It Works (resume-experience block).
 
-# How It Works: steps 0–6. Optional `image` (site-relative or absolute URL), `video` (YouTube).
+# How It Works: steps 0–5. Optional `image` (site-relative or absolute URL), `video` (YouTube).
 experience:
   - role: "Step 0 — Set"
     org: "Initial rope layout on the workspace"
@@ -89,26 +89,18 @@ experience:
       centroid (perpendicular to the blue best-fit direction) and the perpendicular
       from the farthest yellow point to the green–red segment. This intersection
       positions the gripper to thread the rope end through the formed loop.
-  - role: "Step 5 — Flip (part 2)"
-    org: "Late-stage loop reorientation"
-    skip_dates: true
-    image: media/how-it-works/step-5-flip-part-2.png
-    image_alt: "Diagram: second flip of the loop before final pull"
-    summary: |
-      The gripper continues reorienting the loop so the rope topology matches the
-      tightened overhand knot. The robot moves toward the midpoint between the blue and
-      yellow rope centroids to draw both segments toward the center before the final pull.
-  - role: "Step 6 — Pull"
-    org: "Tighten, final tuck, and release"
+  - role: "Step 5 — Tighten & Release"
+    org: "Completion — midpoint draw-down, tuck, and release"
     skip_dates: true
     image: media/how-it-works/step-6-pull.png
     image_alt: "Diagram: pulling to tighten the knot and finishing the motion"
     video: "https://youtube.com/shorts/wegP1dggHmc"
     summary: |
-      The gripper moves to a point projected along the averaged direction of the
-      red→blue and green→blue vectors, at a distance equal to the total span of the rope
-      geometry. The rope is released, completing the knot. Force/torque feedback from the
-      robot's wrist sensor confirms rope tension.
+      After threading through the loop, the rope is tightened and finished in one closing phase:
+      the arm moves toward the midpoint between the blue and yellow rope centroids to pull both
+      segments toward the center, then advances along the averaged direction of the red→blue and
+      green→blue vectors (at the total span of the rope geometry). The rope is released, completing the
+      knot. Force/torque feedback from the wrist sensor confirms rope tension.
 
 skills:
   - name: Robotics

@@ -55,8 +55,8 @@ sections:
         guided entirely by real-time visual feedback from an **Intel RealSense D435** depth camera.
 
         The robot perceives the spatial layout of colored rope segments, computes the geometric
-        transformations needed for each knot-tying phase, and executes a **seven-phase** manipulation
-        sequence (steps 0–6) using **MoveIt** motion planning and **ROS2** visual servoing.
+        transformations needed for each knot-tying phase, and executes a **six-phase** manipulation
+        sequence (steps 0–5) using **MoveIt** motion planning and **ROS2** visual servoing.
 
         Key challenges addressed include depth estimation of color-absorbing rope (which defeats
         standard IR depth sensors), robust 3D localization via ArUco marker calibration, and
@@ -111,7 +111,7 @@ sections:
     id: steps
     content:
       title: "How It Works"
-      subtitle: "Seven phases (steps 0–6): geometry on the arm, knot-step labels from vision"
+      subtitle: "Six phases (steps 0–5): geometry on the arm, knot-step labels from vision"
       date_format: ""
     design:
       columns: '1'
@@ -311,7 +311,7 @@ sections:
           <div class="knotbot-placeholder knotbot-video-placeholder">
             <div class="knotbot-placeholder-icon">▶</div>
             <div class="knotbot-placeholder-label">Step-by-Step Breakdown</div>
-            <div class="knotbot-placeholder-sub">Slow-motion overview (steps 0–6); per-step clips are in How It Works — drop video here</div>
+            <div class="knotbot-placeholder-sub">Slow-motion overview (steps 0–5); per-step clips are in How It Works — drop video here</div>
           </div>
           <div class="knotbot-placeholder knotbot-image-placeholder">
             <div class="knotbot-placeholder-icon">🖼</div>

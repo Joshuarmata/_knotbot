@@ -26,7 +26,7 @@ role: "EE 106A Final Project"
 duration: "Spring 2026"
 team_size: 2
 highlights:
-  - "7-phase autonomous knot-tying sequence (steps 0–6)"
+  - "6-phase autonomous knot-tying sequence (steps 0–5)"
   - "Geometric visual servoing: HSV + RealSense + SVD line fits → MoveIt goals"
   - "Knot-step perception: supervised full-frame ResNet18 (rope_knot_infer HUD)"
   - "ArUco-based table-plane calibration for IR-absorbing tape"
@@ -39,7 +39,7 @@ KnotBot autonomously ties an overhand knot in a rope using a UR7e 6-DOF robot ar
 
 KnotBot is the final project for **EE 106A — Introduction to Robotics** at UC Berkeley (Spring 2026). The system combines visual perception, geometric planning, and closed-loop robot control to perform a task that requires sub-centimeter precision: tying a knot in a rope.
 
-The robot uses an **Intel RealSense D435** depth camera mounted on its wrist to perceive the workspace in real time, detects the positions of colored rope/tape landmarks, computes the geometry of each manipulation phase, and executes a **seven-phase** sequence (steps 0–6) via **MoveIt** motion planning and ROS2 visual servoing. A separate **rope knot perception** pipeline performs supervised full-frame classification of knot phases (e.g. `step0`, `step1`) for monitoring and tooling—see the homepage **Visual Pipeline** section for how that sits next to the geometric servo loop.
+The robot uses an **Intel RealSense D435** depth camera mounted on its wrist to perceive the workspace in real time, detects the positions of colored rope/tape landmarks, computes the geometry of each manipulation phase, and executes a **six-phase** sequence (steps 0–5) via **MoveIt** motion planning and ROS2 visual servoing. A separate **rope knot perception** pipeline performs supervised full-frame classification of knot phases (e.g. `step0`, `step1`) for monitoring and tooling—see the homepage **Visual Pipeline** section for how that sits next to the geometric servo loop.
 
 ---
 
@@ -83,15 +83,20 @@ Executes the knot-tying sequence:
 - **IK solving** — Uses MoveIt's `/compute_ik` service for Cartesian-to-joint conversion
 - **Trajectory execution** — Sends joint trajectories via `JointTrajectoryController`
 - **Gripper control** — Opens/closes gripper at appropriate steps
-- **Force feedback** — Monitors wrist F/T sensor to detect rope tension in Step 6
+- **Force feedback** — Monitors wrist F/T sensor to detect rope tension in Step 5 (tighten & release)
 
 ---
 
-## The 6-Step Knot Sequence
+## Knot sequence (steps 0–5)
 
-### Photos of Each Step
+### Photos of each phase
 
 <div class="knotbot-media-grid knotbot-gallery-grid">
+  <div class="knotbot-placeholder knotbot-image-placeholder">
+    <div class="knotbot-placeholder-icon">🖼</div>
+    <div class="knotbot-placeholder-label">Step 0 — Initial set</div>
+    <div class="knotbot-placeholder-sub">Staged rope layout before crossing — drop image here</div>
+  </div>
   <div class="knotbot-placeholder knotbot-image-placeholder">
     <div class="knotbot-placeholder-icon">🖼</div>
     <div class="knotbot-placeholder-label">Step 1 — Detect Crossing Point</div>
@@ -114,13 +119,8 @@ Executes the knot-tying sequence:
   </div>
   <div class="knotbot-placeholder knotbot-image-placeholder">
     <div class="knotbot-placeholder-icon">🖼</div>
-    <div class="knotbot-placeholder-label">Step 5 — Tighten</div>
-    <div class="knotbot-placeholder-sub">Robot drawing rope segments toward center — drop image here</div>
-  </div>
-  <div class="knotbot-placeholder knotbot-image-placeholder">
-    <div class="knotbot-placeholder-icon">🖼</div>
-    <div class="knotbot-placeholder-label">Step 6 — Final Tuck & Release</div>
-    <div class="knotbot-placeholder-sub">Completed overhand knot after release — drop image here</div>
+    <div class="knotbot-placeholder-label">Step 5 — Tighten & release</div>
+    <div class="knotbot-placeholder-sub">Draw-down, final tuck, and completed overhand knot after release — drop image here</div>
   </div>
 </div>
 
@@ -150,7 +150,7 @@ Each color is detected using HSV thresholds tuned for the specific tape/rope col
   <div class="knotbot-placeholder knotbot-image-placeholder">
     <div class="knotbot-placeholder-icon">🖼</div>
     <div class="knotbot-placeholder-label">RViz: Step Goal Markers</div>
-    <div class="knotbot-placeholder-sub">Step 1–6 goal spheres and TF frames visualized in RViz — drop screenshot here</div>
+    <div class="knotbot-placeholder-sub">Step 0–5 goal spheres and TF frames visualized in RViz — drop screenshot here</div>
   </div>
 </div>
 
@@ -174,7 +174,7 @@ Colored tape absorbs IR light and often returns zero depth from the RealSense al
   <div class="knotbot-placeholder knotbot-video-placeholder">
     <div class="knotbot-placeholder-icon">▶</div>
     <div class="knotbot-placeholder-label">Step-by-Step Slow Motion</div>
-    <div class="knotbot-placeholder-sub">Each of the 6 steps shown in slow motion for clarity — drop video here</div>
+    <div class="knotbot-placeholder-sub">Each of the phases (steps 0–5) in slow motion for clarity — drop video here</div>
   </div>
 </div>
 
