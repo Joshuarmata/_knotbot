@@ -295,6 +295,13 @@ sections:
             </div>
           </div>
         </div>
+
+        <aside class="knotbot-team-acknowledgements" aria-label="AI and contributor acknowledgements">
+          <h4 class="knotbot-team-acknowledgements-title">AI and other contributor acknowledgements</h4>
+          <p>We disclose our use of AI-assisted development tools for debugging and early function scaffolding—in-editor assistants and Claude Code supported early iterations.</p>
+          <p>Notable areas that incorporated AI-assisted edits include the <code>bbox</code> routine that groups detected pixels into bounding boxes (we also consulted Stack&nbsp;Exchange examples), and early structure around step&nbsp;1 of the knot sequence (built heavily on Lab&nbsp;7). Those pieces served as scaffolding we extended ourselves.</p>
+          <p>Much of the trajectory code derives from Lab&nbsp;7; we relied on AI primarily as a debugging aid when integrations failed. Additionally, this website was built upon a template designed by HugoBlox</p>
+        </aside>
     design:
       columns: '1'
       background:

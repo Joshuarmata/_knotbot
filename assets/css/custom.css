@@ -300,6 +300,61 @@ section#demo .prose.max-w-prose {
   line-height: 1.5;
 }
 
+.knotbot-team-acknowledgements {
+  margin-top: 2.75rem;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.25rem 1.35rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(241, 245, 249, 0.65);
+}
+
+.dark .knotbot-team-acknowledgements {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.knotbot-team-acknowledgements-title {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(71, 85, 105);
+}
+
+.dark .knotbot-team-acknowledgements-title {
+  color: rgb(148, 163, 184);
+}
+
+.knotbot-team-acknowledgements p {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgb(71, 85, 105);
+}
+
+.knotbot-team-acknowledgements p:last-child {
+  margin-bottom: 0;
+}
+
+.dark .knotbot-team-acknowledgements p {
+  color: rgb(148, 163, 184);
+}
+
+.knotbot-team-acknowledgements code {
+  font-size: 0.84em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.dark .knotbot-team-acknowledgements code {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 /* Dev-hero: hide author portrait (circular image above the title) */
 section#hero .relative.z-10.mx-auto.max-w-5xl > div.mb-8:has(img.object-cover) {
   display: none !important;
