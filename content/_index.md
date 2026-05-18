@@ -328,13 +328,13 @@ sections:
 
           <div class="knotbot-code-panels">
             <div class="knotbot-code-panel knotbot-code-panel--visual" id="knotbot-code-panel-visual" role="tabpanel" aria-labelledby="knotbot-code-tab-label-visual">
-              <pre class="knotbot-code-pre"><code class="language-python"># Visual — paste your code here</code></pre>
+              <pre class="knotbot-code-pre"><code class="language-python"># Visual — paste code here</code></pre>
             </div>
             <div class="knotbot-code-panel knotbot-code-panel--main" id="knotbot-code-panel-main" role="tabpanel" aria-labelledby="knotbot-code-tab-label-main">
-              <pre class="knotbot-code-pre"><code class="language-python"># Main — paste your code here</code></pre>
+              <pre class="knotbot-code-pre"><code class="language-python"># Main — code here</code></pre>
             </div>
             <div class="knotbot-code-panel knotbot-code-panel--trajectories" id="knotbot-code-panel-trajectories" role="tabpanel" aria-labelledby="knotbot-code-tab-label-trajectories">
-              <pre class="knotbot-code-pre"><code class="language-python"># Trajectories — paste your code here</code></pre>
+              <pre class="knotbot-code-pre"><code class="language-python"># Trajectories — paste code here</code></pre>
             </div>
           </div>
         </div>
