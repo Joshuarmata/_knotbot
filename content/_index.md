@@ -306,5 +306,44 @@ sections:
           light: "#ffffff"
           dark: "#0d0d12"
       spacing:
+        padding: ["4rem", "0", "4rem", "0"]
+
+  # Code (tabbed snippets — paste into each panel later)
+  - block: markdown
+    id: code
+    content:
+      title: "Code"
+      subtitle: "Source highlights from the KnotBot stack"
+      text: |-
+        <div class="knotbot-code-tabs">
+          <input type="radio" name="knotbot-code-tab" id="knotbot-code-tab-visual" class="knotbot-code-tab-input" checked>
+          <input type="radio" name="knotbot-code-tab" id="knotbot-code-tab-main" class="knotbot-code-tab-input">
+          <input type="radio" name="knotbot-code-tab" id="knotbot-code-tab-trajectories" class="knotbot-code-tab-input">
+
+          <div class="knotbot-code-tablist" role="tablist" aria-label="Code categories">
+            <label class="knotbot-code-tab" for="knotbot-code-tab-visual" role="tab" aria-controls="knotbot-code-panel-visual" id="knotbot-code-tab-label-visual">Visual</label>
+            <label class="knotbot-code-tab" for="knotbot-code-tab-main" role="tab" aria-controls="knotbot-code-panel-main" id="knotbot-code-tab-label-main">Main</label>
+            <label class="knotbot-code-tab" for="knotbot-code-tab-trajectories" role="tab" aria-controls="knotbot-code-panel-trajectories" id="knotbot-code-tab-label-trajectories">Trajectories</label>
+          </div>
+
+          <div class="knotbot-code-panels">
+            <div class="knotbot-code-panel knotbot-code-panel--visual" id="knotbot-code-panel-visual" role="tabpanel" aria-labelledby="knotbot-code-tab-label-visual">
+              <pre class="knotbot-code-pre"><code class="language-python"># Visual — paste your code here</code></pre>
+            </div>
+            <div class="knotbot-code-panel knotbot-code-panel--main" id="knotbot-code-panel-main" role="tabpanel" aria-labelledby="knotbot-code-tab-label-main">
+              <pre class="knotbot-code-pre"><code class="language-python"># Main — paste your code here</code></pre>
+            </div>
+            <div class="knotbot-code-panel knotbot-code-panel--trajectories" id="knotbot-code-panel-trajectories" role="tabpanel" aria-labelledby="knotbot-code-tab-label-trajectories">
+              <pre class="knotbot-code-pre"><code class="language-python"># Trajectories — paste your code here</code></pre>
+            </div>
+          </div>
+        </div>
+    design:
+      columns: '1'
+      background:
+        color:
+          light: "#f5f5f5"
+          dark: "#08080c"
+      spacing:
         padding: ["4rem", "0", "6rem", "0"]
 ---

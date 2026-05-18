@@ -363,3 +363,131 @@ section#hero .relative.z-10.mx-auto.max-w-5xl > div.mb-8:has(img.object-cover) {
 section#hero .flex.flex-col.md\:flex-row.items-center.gap-12 > div.flex-shrink-0:has(img.object-cover) {
   display: none !important;
 }
+
+/* ============================================================
+   Code section — tabbed snippets (#code)
+   ============================================================ */
+section#code > .flex.max-w-prose {
+  max-width: min(56rem, 96vw);
+  width: 100%;
+}
+
+section#code .prose.max-w-prose {
+  max-width: 100%;
+  width: 100%;
+}
+
+.knotbot-code-tabs {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.knotbot-code-tab-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.knotbot-code-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.knotbot-code-tab {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(255, 255, 255, 0.85);
+  color: rgb(71, 85, 105);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  user-select: none;
+}
+
+.dark .knotbot-code-tab {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgb(203, 213, 225);
+}
+
+.knotbot-code-tab:hover {
+  border-color: rgba(99, 102, 241, 0.55);
+  color: rgb(79, 70, 229);
+}
+
+.dark .knotbot-code-tab:hover {
+  color: rgb(165, 180, 252);
+}
+
+#knotbot-code-tab-visual:checked ~ .knotbot-code-tablist label[for="knotbot-code-tab-visual"],
+#knotbot-code-tab-main:checked ~ .knotbot-code-tablist label[for="knotbot-code-tab-main"],
+#knotbot-code-tab-trajectories:checked ~ .knotbot-code-tablist label[for="knotbot-code-tab-trajectories"] {
+  background: rgb(99, 102, 241);
+  border-color: rgb(99, 102, 241);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+}
+
+.knotbot-code-panel {
+  display: none;
+}
+
+#knotbot-code-tab-visual:checked ~ .knotbot-code-panels .knotbot-code-panel--visual,
+#knotbot-code-tab-main:checked ~ .knotbot-code-panels .knotbot-code-panel--main,
+#knotbot-code-tab-trajectories:checked ~ .knotbot-code-panels .knotbot-code-panel--trajectories {
+  display: block;
+}
+
+.knotbot-code-pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgb(15, 23, 42);
+  color: rgb(226, 232, 240);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  min-height: 10rem;
+  text-align: left;
+}
+
+.dark .knotbot-code-pre {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgb(10, 10, 15);
+}
+
+.prose .knotbot-code-pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose .knotbot-code-pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  border-radius: 0;
+}

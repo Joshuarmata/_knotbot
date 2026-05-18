@@ -21,3 +21,6 @@ main:
   - name: Team
     url: /#team
     weight: 50
+  - name: Code
+    url: /#code
+    weight: 55
